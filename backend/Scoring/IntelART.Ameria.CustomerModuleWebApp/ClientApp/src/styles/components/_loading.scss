@@ -1,0 +1,16 @@
+.loading {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    &.app-loading {
+        height: 100%;
+    }
+
+    &.page-loading {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

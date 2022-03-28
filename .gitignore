@@ -1,0 +1,20 @@
+/CreditAdminUI/public
+/CreditShopUI/public
+.vs
+*.user
+bin/
+obj/
+node_modules/
+packages/
+.DS_Store
+merged.sql
+/pub
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices.suo
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/LegalDataResponse.datasource
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/PersonDataResponse.datasource
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/PersonDataResponseOld.datasource
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/ResidentDataResponse.datasource
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/srvNorq.disco
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/srvNorq.xsd
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/srvNorq0.xsd
+/backend/IntelART.Ameria.CLRServices/IntelART.Ameria.CLRServices/Web References/NORQServiceReference/srvNorq1.xsd

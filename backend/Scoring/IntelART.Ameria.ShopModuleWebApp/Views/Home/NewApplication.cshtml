@@ -1,0 +1,521 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Ապառիկ հայտերի առցանց համակարգ";
+}
+<script>
+    var isManager = @(User.IsInRole("ShopPowerUser") ? "true" : "false");
+</script>
+
+@if(Model!=null)
+{
+    <script type="text/javascript">
+        var currentApplicationId = "@Model";
+    </script>
+}
+ <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab1">Սկզբնական</a></li>
+        <li><a data-toggle="tab" href="#tab2">Վարկի պայմաններ</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="tab1" class="tab-pane fade active in formcontainer">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h1>Հայտ</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Վարկի տվյալներ</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="amount">Գումար <span class="mandatory">*</span></label>
+                        <input id="preAppAmount" name="preAppAmount" req="true" vtype="num" type="text" class="form-control" maxlength="10" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="currency">Արժույթ <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="preAppCurrency"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Անձնական տվյալներ</h2>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Անուն (հայերեն) <span class="mandatory">*</span></label>
+                        <input type="text" req="true" class="form-control" id="preAppName">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Ազգանուն (հայերեն) <span class="mandatory">*</span></label>
+                        <input type="text" class="form-control" req="true" id="preAppLastName">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Հայրանուն (հայերեն) <span class="mandatory">*</span></label>
+                        <input type="text" class="form-control" req="true" id="preAppFatherName">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group datepicker">
+                        <label for="text">Ծննդյան ամսաթիվ <span class="mandatory">*</span></label>
+                        <input type="text" req="true" placeholder="օր/ամիս/տարի" vtype="date" id="preAppBirthDate" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Անձը հաստատող փաստաթղթեր</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Հանրային ծառայությունների համարանիշ / սոցիալական քարտ <span class="mandatory">*</span></label>
+                        <input type="text" class="form-control" maxlength="10" req="true" vtype="num" id="preAppSocCard">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Փաստաթղթի տեսակ <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="preAppDocumentType"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Փաստաթղթի համար <span class="mandatory">*</span></label>
+                        <input type="text" req="true" maxlength="9" class="form-control" id="preAppDocumentNum">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group datepicker">
+                        <label for="text">Տրված <span class="mandatory">*</span></label>
+                        <input type="text" req="true" vtype="date" placeholder="օր/ամիս/տարի" class="form-control" id="preAppGiven">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group datepicker">
+                        <label for="text">Վավերականության ժամկետ <span class="mandatory">*</span></label>
+                        <input type="text" req="true" vtype="date" placeholder="օր/ամիս/տարի" class="form-control" id="preAppExpireDate">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Ում կողմից <span class="mandatory">*</span></label>
+                        <input type="text" req="true" vtype="num" maxlength="3" class="form-control" id="preAppGivenBy">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Բջջային հեռախոս</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <div class="phonefield">
+                            <span class="country-code">374</span>
+                            <input placeholder="XX XXX XXX" type="text" class="form-control" req="true" maxlength="8" vtype="phone" id="preAppMobilePhone1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <button onclick="sendSMS();" class="btn btn-info" id="send-sms-btn">Ուղարկել նույնականացման կոդը</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Նույնականացման կոդ <span class="mandatory">*</span></label>
+                        <input type="text" req="true" vtype="num" maxlength="6" class="form-control" id="preAppAuthCode">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Ապրանքի տվյալներ</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Ապրանքի տեսակը <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="preAppProductCategories"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Ակցիա</label>
+                        <div class="customselect">
+                            <select req="true" id="preAppTemplate"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Փաստաթղթեր</h2>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <button onclick="downloadPreFile();" class="btn btn-info" id="print-requests-btn">Տպել հարցումների համաձայնությունը</button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                    <form enctype="multipart/form-data" id="agreementScanUploadForm">
+                        <a href="#" class="addfile fileUpload">Կցել հարցումների համաձայնությունը<input id="agreementScanUpload" type="file" class="upload" /></a>
+                        <div>
+                            <div id="uploadLinkArea">
+                                <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                            </div>
+                            <progress style="display: none;"></progress>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn btn-cancel" onclick="goToMainPage();">Չեղարկել</button>
+                <button class="btn btn-default" onclick="submitPreApp()">Կատարել հարցում</button>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-pane fade formcontainer">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h1>Լրացուցիչ տվյալներ</h1>
+                </div>
+            </div>
+            <div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+					<h2>Ապրանքի տվյալներ</h2>
+				</div>
+			</div>
+			<div class="row products">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<div class="form-group">
+						<label for="text">Ապրանքի անվանումը</label>
+						<input type="text" class="form-control" id="mainAppProductName" value="">
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-12">
+					<div class="form-group">
+						<label for="text">Քանակը</label>
+						<input type="text" class="form-control" maxlength="3" id="mainAppProductCount" value="1">
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-12">
+					<div class="form-group">
+						<label for="text">Գին</label>
+						<input type="text" class="form-control" id="mainAppProductPrice" value="">
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-12 padding-5-15">
+					<div class="form-group">
+						<button type="button" onclick="addProduct(event);"  class="btn btn-success">Ավելացնել</button>
+					</div>
+				</div>
+				<div id="mainAppProducts" class="col-lg-12 col-md-12 col-sm-12 tags">
+					<div class="total" id="totalContainer">
+                        <span id="totalPrice" class="totalsum">0դր.</span>
+                        Ապրանքների ընդհանուր գումար
+                    </div>
+				</div>
+			</div>
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2>Վարկի տվյալներ</h2>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Տոկոսադրույք</label>
+							<input type="text" req="true" id="mainAppInterest" disabled class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Ժամկետ</label>
+                            <div class="customselect">
+                                <select req="true" id="mainAppDuration" >
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Գումար</label>
+                            <input type="text" req="true" vtype="num" id="mainAppAmount" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Կանխավճար</label>
+							<input type="text" id="mainAppPrePayment" disabled class="form-control" value="0" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Բանկի հետ հաղորդակցման եղանակ</label>
+                            <div class="customselect">
+                                <select req="true" id="mainAppCommunicationType">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Վաճառքի կոդ</label>
+                            <input type="text" id="mainSaleNumber" class="form-control">
+                        </div>
+                    </div>
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="form-group">
+							<button type="button" onclick="getMonthlyPayment();" class="btn btn-success">Հաշվարկել ամսական վճարի չափը</button>
+						</div>
+					</div>
+					<div id="mainAppMonthlyPaymentContainer" class="col-lg-12 col-md-12 col-sm-12" style="display:none;">
+						<div class="form-group">
+							<div class="alert alert-success">
+								Ձեր ամսական վճարի մոտավոր չափը կազմում է <span id="mainAppMonthlyPayment"></span> դրամ
+							</div>
+						</div>
+					</div>
+                </div>
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2>Անձնական տվյալներ</h2>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Անուն (անգլերեն) <span class="mandatory">*</span></label>
+                            <input type="text" req="true" id="mainAppName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Ազգանուն (անգլերեն) <span class="mandatory">*</span></label>
+                            <input type="text" req="true" id="mainAppLastName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Ծննդավայր <span class="mandatory">*</span></label>
+                            <div class="customselect">
+                                <select req="true" id="mainAppBirthCountry">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Քաղաքացիություն <span class="mandatory">*</span></label>
+                            <div class="customselect">
+                                <select req="true" id="mainAppCitizenship">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Բջջային հեռախոս 2</label>
+                            <div class="phonefield">
+                                <span class="country-code">374</span>
+                                <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="mainAppMobilePhone2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="text">Քաղաքային հեռախոս </label>
+                            <div class="phonefield">
+                                <span class="country-code">374</span>
+                                <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="mainAppHomePhone">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="email">Էլ. հասցե <span class="mandatory">*</span></label>
+                            <input type="text" req="true" vtype="email" id="mainAppEmail" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>Գրանցման հասցե</h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Երկիր <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="mainAppRegisterCountry">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Մարզ <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="mainAppregisterState">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Բնակավայր <span class="mandatory">*</span></label>
+                        <div class="customselect">
+                            <select req="true" id="mainAppRegisterCity">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Փողոց <span class="mandatory">*</span></label>
+                        <input type="text" class="form-control" req="true" id="mainAppRegisterStreet">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+                        <input type="text" class="form-control" req="true" id="mainAppRegisterBuilding">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="text">Բնակարան</label>
+                        <input type="text" class="form-control" id="mainAppRegisterAppartment">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="mainLiveAdrressForm">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2>Բնակության հասցե</h2>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="mainAppliveCheckbox" onclick="mainLiveAddressCheckboxClicked();"> Նշել, եթե Ձեր գրանցման և բնակության հասցեները համընկնում են</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="mainAppCurrentAddressContent">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Երկիր <span class="mandatory">*</span></label>
+                                <div class="customselect">
+                                    <select req="true" id="mainAppLiveCountry"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Մարզ <span class="mandatory">*</span></label>
+                                <div class="customselect">
+                                    <select req="true" id="mainAppLiveState"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Բնակավայր <span class="mandatory">*</span></label>
+                                <div class="customselect">
+                                    <select req="true" id="mainAppLiveCity"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Փողոց <span class="mandatory">*</span></label>
+                                <input type="text" class="form-control" req="true" id="mainAppLiveStreet">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+                                <input type="text" class="form-control" req="true" id="mainAppLiveBuilding">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="text">Բնակարան</label>
+                                <input type="text" class="form-control" id="mainAppLiveAppartment">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 formblock">
+                        <h2>Փաստաթղթեր</h2>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                        <form enctype="multipart/form-data" id="passportScanUploadForm">
+                            <a href="#" class="addfile fileUpload">Կցել անձը հաստատող փաստաթղթի բնօրինակի սկանը<input id="passportScanUpload" type="file" class="upload" /></a>
+                            <div>
+                                <div id="uploadLinkArea">
+                                    <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                    <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                </div>
+                                <progress style="display: none;"></progress>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                        <form enctype="multipart/form-data" id="socCardScanUploadForm">
+                            <a href="#" class="addfile fileUpload">Կցել սոցիալական քարտի բնօրինակի սկանը<input id="socCardScanUpload" type="file" class="upload" /></a>
+                            <div>
+                                <div id="uploadLinkArea">
+                                    <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                    <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                </div>
+                                <progress style="display: none;"></progress>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="actions">
+                    <input type="button" class="btn btn-cancel" onclick="goToMainPage();" value="Չեղարկել"/>
+                    <input type="button" class="btn btn-default" onclick="submitMainApplication();" value="Հաստատել"/>
+                </div>
+        </div>
+
+    </div>
+</div>
+<iframe style="display:none" id="preAppUploadIframe" name="preAppUploadIframe"></iframe>
+
+<!-- File Max Size Modal -->
+<div id="attachmentsizecheck" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Կցվող փաստաթղթի չափի գերազանցում</h4>
+            </div>
+            <div class="modal-body">
+                Կցվող փաստաթղթի չափը չպետք է գերազանցի <span id="fileMaxSize"></span> կիլոբայթը։ Խնդրում ենք կցել ավելի փոքր չափի փաստաթուղթ։
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+            </div>
+        </div>
+
+    </div>
+</div>

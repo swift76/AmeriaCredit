@@ -1,0 +1,38 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetNORQClientQueryResult(@SOCIAL_CARD_NUMBER	char(10))
+AS
+	declare @CURRENT_DATE date=getdate()
+	select convert(varchar(20),Common.ahf_Unicode2ANSI(FIRST_NAME)) as FIRST_NAME
+		,convert(varchar(20),Common.ahf_Unicode2ANSI(LAST_NAME)) as LAST_NAME
+		,convert(varchar(20),Common.ahf_Unicode2ANSI(PATRONYMIC_NAME)) as PATRONYMIC_NAME
+		,BIRTH_DATE
+		,IS_DEAD
+		,GENDER
+		,convert(varchar(20),Common.ahf_Unicode2ANSI(DISTRICT)) as DISTRICT
+		,convert(varchar(40),Common.ahf_Unicode2ANSI(COMMUNITY)) as COMMUNITY
+		,convert(varchar(100),Common.ahf_Unicode2ANSI(STREET)) as STREET
+		,convert(varchar(40),Common.ahf_Unicode2ANSI(BUILDING)) as BUILDING
+		,convert(varchar(40),Common.ahf_Unicode2ANSI(APARTMENT)) as APARTMENT
+		,NON_BIOMETRIC_PASSPORT_NUMBER
+		,NON_BIOMETRIC_PASSPORT_ISSUE_DATE
+		,NON_BIOMETRIC_PASSPORT_EXPIRY_DATE
+		,NON_BIOMETRIC_PASSPORT_ISSUED_BY
+		,BIOMETRIC_PASSPORT_NUMBER
+		,BIOMETRIC_PASSPORT_ISSUE_DATE
+		,BIOMETRIC_PASSPORT_EXPIRY_DATE
+		,BIOMETRIC_PASSPORT_ISSUED_BY
+		,ID_CARD_NUMBER
+		,ID_CARD_ISSUE_DATE
+		,ID_CARD_EXPIRY_DATE
+		,ID_CARD_ISSUED_BY
+		,FEE
+		,convert(varchar(100),Common.ahf_Unicode2ANSI(ORGANIZATION_NAME)) as ORGANIZATION_NAME
+		,convert(varchar(20),Common.ahf_Unicode2ANSI(REGISTRATION_CODE)) as REGISTRATION_CODE
+		,TAX_CODE
+		,convert(varchar(100),Common.ahf_Unicode2ANSI(ORGANIZATION_ADDRESS)) as ORGANIZATION_ADDRESS
+		,convert(varchar(100),Common.ahf_Unicode2ANSI(POSITION)) as POSITION
+		,AGREEMENT_START_DATE
+		,AGREEMENT_END_DATE
+	from Common.NORQ_CLIENT_QUERY_RESULT with (NOLOCK)
+	where SOCIAL_CARD_NUMBER=@SOCIAL_CARD_NUMBER
+		and convert(date,QUERY_DATE)=@CURRENT_DATE
+GO

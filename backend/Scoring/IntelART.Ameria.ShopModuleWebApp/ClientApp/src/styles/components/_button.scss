@@ -1,0 +1,40 @@
+.form-btn {
+    min-width: 110px;
+}
+
+.btn-primary {
+    color: white;
+
+    &:hover {
+        background: #004a63;
+    }
+
+    &:disabled {
+        pointer-events: none;
+    }
+
+    &:disabled {
+        color: white;
+    }
+}
+
+.btn-info,
+.btn-warning {
+    color: white;
+
+    &:hover {
+        color: white;
+    }
+
+    &:disabled {
+        color: white;
+    }
+}
+
+.btn-light {
+    color: #999;
+
+    &:hover {
+        color: #333;
+    }
+}

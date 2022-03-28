@@ -1,0 +1,282 @@
+﻿@model ViewModelBase
+
+@{
+    ViewData["Title"] = "Ապառիկ հայտերի առցանց համակարգ";
+}
+<script type="text/javascript">
+    var global_user = { username: "@Model.CurrentUser.Username", roles: [@Html.Raw(String.Concat(Model.CurrentUser.Roles.Select(value => String.Format("'{0}',", value))))] };
+</script>
+<div class="container">
+
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#bankusers">Բանկի օգտագործողներ</a></li>
+            <li><a data-toggle="tab" href="#shopsusers">Խանութների օգտագործողներ</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+
+        <div id="bankusers" class="tab-pane fade in active">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                    @*<a href="#" id="exportCSVBank" class="export">Արտահանել Excel</a>*@
+                    <a href="#" class="add" data-toggle="modal" data-target="#add-bank-user">Ավելացնել օգտագործող</a>
+                    <h1>Բանկի օգտագործողներ</h1>
+                    <div class="applications">
+
+                        <table id="data-admin" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Օգտագործող</th>
+                                    <th>Անուն</th>
+                                    <th>Կարգավիճակ</th>
+                                    <th>Բացման ամսաթիվ</th>
+                                    <th>Գաղտնաբառի ժամկետ</th>
+                                    <th>Փակման ամսաթիվ</th>
+                                    <th>Գործողություն</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="shopsusers" class="tab-pane fade">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                    @*<a href="#" id="exportCSVShop" class="export">Արտահանել Excel</a>*@
+                    <a href="#" class="add" data-toggle="modal" data-target="#add-shop-user">Ավելացնել օգտագործող</a>
+
+                    <h1>Խանութների օգտագործողներ</h1>
+                    <div class="applications">
+
+                        <table id="data-shop" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Օգտագործող</th>
+                                    <th>Անուն</th>
+                                    <th>Խանութ</th>
+                                    <th>Ղեկավար</th>
+                                    <th>Հեռախոս</th>
+                                   <!-- <th>Լիազ. վերջնաժամկետ</th> -->
+                                    <th>Կարգավիճակ</th>
+                                    <th>Բացման ամսաթիվ</th>
+                                    <th>Գաղտն. ժամկետ</th>
+                                    <th>Փակման ամսաթիվ</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div id="add-bank-user" class="modal fade addnew-dialog" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ավելացնել բանկի օգտագործող</h4>
+            </div>
+            <div class="modal-body">
+				<div id="addBankUserError" class="errorContainer"></div>
+                <div class="form-group">
+                    <label for="email">Օգտագործող</label>
+                    <input type="text" req="true" class="form-control" id="bankuserUser">
+                </div>
+				<div class="form-group">
+                    <label for="email">էլեկտրոնային հասցե</label>
+                    <input type="text" req="true" vtype="email" class="form-control" id="bankuserEmail">
+                </div>
+                <div class="form-group">
+                    <label for="email">Անուն</label>
+                    <input type="text" req="true" class="form-control" id="bankuserName">
+                </div>
+				<div class="form-group">
+                    <label for="email">Ազգանուն</label>
+                    <input type="text" req="true" class="form-control" id="bankuserLastName">
+                </div>
+				<input type="hidden" id="bankUserId" />
+                <input type="hidden" id="bankUserStateId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Չեղարկել</button>
+                <button type="button" class="btn btn-success" onclick="addBankUser()">Ավելացնել</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="add-shop-user" class="modal fade newadminuser" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ավելացնել խանութի օգտագործող</h4>
+            </div>
+            <div class="modal-body">
+				<div id="addShopUserError" class="errorContainer"></div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="text">Օգտագործող</label>
+							<div>
+								<input type="text" disabled="true" class="form-control" id="shopuserPrefix" />
+								<input type="text" req="true" class="form-control" id="shopuserUser">
+							</div>
+                        </div>
+                    </div>
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="password">էլեկտրոնային հասցե</label>
+                            <input type="text" req="true" vtype="email" class="form-control" id="shopuserEmail">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="text">Անուն</label>
+                            <input type="text" req="true" class="form-control" id="shopuserName">
+                        </div>
+                    </div>
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="text">Ազգանուն</label>
+                            <input type="text" req="true" class="form-control" id="shopuserLastName">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Հեռախոս</label>
+							<div>
+								<label class="phoneNumberPrefix">374 </label>
+								<input type="text"  req="true" maxlength="8" vtype="phone" class="form-control" id="shopuserPhone">
+							</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Խանութ</label>
+                            <div class="">
+                                <select req="true" onchange="selectShop();" class="form-control" id="shopuserShop">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Տեսակը</label>
+                            <div class="customselect">
+                                <select req="true" selectedIndex="-1" class="form-control" id="shopuserType">
+                                    <option value="worker">Աշխատակից</option>
+                                    <option value="manager">Ղեկավար</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   <!-- <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Լիազորագրի համար</label>
+                            <input type="text" req="true" vtype="num" class="form-control" id="shopuserAuthCode">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Լիազորագրի ամսաթիվ</label>
+                            <input type="text" req="true" class="form-control" id="shopuserAuthDate">
+                        </div>
+                    </div>
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Լիազորագրի վերջնաժամկետ</label>
+                            <input type="text" req="true" class="form-control" id="shopuserAuthExpireDate">
+                        </div>
+                    </div>-->
+					<input type="hidden" id="shopUserId" />
+                    <input type="hidden" id="shopUserStateId" />
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Չեղարկել</button>
+                <button type="button" class="btn btn-success" onclick="addShopUser()">Ավելացնել</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="openCloseBankUser" class="modal fade addnew-dialog" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Բանկի օգտագործողի փակում</h4>
+            </div>
+            <div class="modal-body">
+				<div id="openCloseBankUserError" class="errorContainer"></div>
+				<div id="openCloseBankUserText">Կատարե՞լ փակում</div>
+            </div>
+			<input type="hidden" id="openCloseBankUserId" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Դադարեցնել</button>
+                <button type="button" class="btn btn-success" onclick="openCloseBankUser()">Հաստատել</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="openCloseShopUser" class="modal fade addnew-dialog" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Խանութի օգտագործողի փակում</h4>
+            </div>
+            <div class="modal-body">
+				<div id="openCloseShopUserError" class="errorContainer"></div>
+				<div id="openCloseShopUserText">Կատարե՞լ փակում</div>
+            </div>
+			<input type="hidden" id="openCloseShopUserId" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Դադարեցնել</button>
+                <button type="button" class="btn btn-success" onclick="openCloseShopUser()">Հաստատել</button>
+            </div>
+        </div>
+
+    </div>
+</div>

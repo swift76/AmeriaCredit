@@ -1,0 +1,46 @@
+// contains all the CSS that handles the layout, such as the container and any grid systems.
+#root,
+body,
+html {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main-layout {
+    padding-top: $navbar-min-height;
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper {
+    margin-top: 25px;
+    flex: 2;
+    position: relative;
+}
+
+.page-content {
+    min-height: $content-min-heith;
+}
+
+.am-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #6d6d6d #ebebeb;
+}
+
+.am-scrollbar ::-webkit-scrollbar {
+    width: 4px;
+    max-width: 100%;
+}
+
+.am-scrollbar ::-webkit-scrollbar-track {
+    background-color: #434343;
+    border-radius: 2px;
+}
+
+.am-scrollbar ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: var(#8c8c8c);
+}

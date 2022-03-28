@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Secured Internal Home Page";
+}
+Authenticated users only
+
+<pre id="results"></pre>
+
+<button id="shops">Shops</button><br />
+<button id="shopUsers">Shop Users</button><br />
+<button id="bankUsers">Bank Users</button><br />
+
+<script language="javascript" type="text/javascript">
+    document.getElementById("shops").addEventListener("click", shops, false);
+    document.getElementById("shopUsers").addEventListener("click", shopUsers, false);
+    document.getElementById("bankUsers").addEventListener("click", bankUsers, false);
+
+    function log() {
+        document.getElementById('results').innerText = '';
+
+        Array.prototype.forEach.call(arguments, function (msg) {
+            document.getElementById('results').innerHTML += msg + '\r\n';
+        });
+    }
+
+    function shops() {
+        GetRequest("/api/bank/Shops");
+    }
+
+    function shopUsers() {
+        GetRequest("/api/bank/ShopUsers");
+    }
+
+    function bankUsers() {
+        GetRequest("/api/bank/BankUsers");
+    }
+
+    function GetRequest(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onload = function () {
+            log(xhr.status, xhr.responseText);
+        };
+        xhr.send();
+    }
+</script>

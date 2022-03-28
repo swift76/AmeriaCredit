@@ -1,0 +1,102 @@
+﻿@model IntelART.Ameria.CustomerModuleWebApp.Controllers.Authentication.RegisterModel
+
+<div id="register" class="tab-pane fade@(Model.IsActive ? " in active":"")">
+    <div class="registration show">
+        <form id="RegisterRequestForm" asp-action="Register">
+            <div class="loginreg-content">
+                <div class="form-group">
+                    <div class="tandem">
+                        <label for="Name">Անուն (անգլերեն)</label>
+                        <input type="text" class="form-control" asp-for="Name" id="registerName">
+                    </div>
+                    <div class="tandem">
+                        <label for="Lastname">Ազգանուն (անգլերեն)</label>
+                        <input type="text" class="form-control" asp-for="Lastname" id="registerLastName">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <label for="SSN">ՀԾՀՀ / սոցիալական քարտի համար</label>
+                    <input type="text" class="form-control" maxlength="10" asp-for="SSN" id="registerSSN">
+                </div>
+                <div class="form-group">
+                    <div class="tandem">
+                        <label for="Phone">Բջջային հեռախոսահամար</label>
+                        <div class="phonefield">
+                            <span class="country-code">374</span>
+                            <input placeholder="XX XXX XXX" maxlength="8" type="text" class="form-control" asp-for="Phone" id="registerPhone">
+                        </div>
+                    </div>
+                    <div class="tandem">
+                        <label for="Email">Էլ․ հասցե</label>
+                        <input type="text" class="form-control" asp-for="Email">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <label for="Password">Գաղտնաբառ</label>
+                    <input type="password" class="form-control" asp-for="Password">
+                </div>
+                <div class="form-group">
+                    <label for="ConfirmPassword">Կրկնել գաղտնաբառ</label>
+                    <input type="password" class="form-control" asp-for="ConfirmPassword">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" id="registrationAgreeCheckbox" asp-for="AcceptedTermsAndConditions"> Համաձայն եմ <a href="/pdf/Terms_and_Conditions_of_Personal_Profile_Opening_and_Maintenance.pdf" target="_blank">պայմաններին և կանոններին</a></label>
+                </div>
+            </div>
+            <div class="login-footer">
+                <button type="submit" disabled="disabled" id="registrationSubmitBtn" class="btn btn-success">Գրանցվել</button>
+            </div>
+        </form>
+        </div>
+
+        <div class="authorization hide">
+            <div class="loginreg-content">
+                Խնդրում ենք մուտքագրել Ձեր բջջային հեռախոսին ուղարկված գաղտնաբառը։
+                <input type="number">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default">Ուղարկել կրկին</button>
+                <button type="button" class="btn btn-success">Հաստատել</button>
+            </div>
+        </div>
+
+    </div>
+	<script>
+		(function ($, undefined) {
+			$(function () {
+				$('#registrationAgreeCheckbox').on('change', function () {
+					if ($(this).is(':checked')) {
+						$('#registrationSubmitBtn').removeAttr("disabled");
+					} else {
+						$('#registrationSubmitBtn').attr("disabled", "disabled");
+					}
+				});
+			});
+		})(jQuery);
+
+        (function ($, undefined) {
+            $(function () {
+                $(window).on("load", function () {
+                    if ($('#registrationAgreeCheckbox').is(':checked')) {
+                        $('#registrationAgreeCheckbox').attr('checked', false);
+                    }
+                });
+            });
+        })(jQuery);
+
+        (function ($, undefined) {
+            $(function () {
+                let form = $("#RegisterRequestForm")[0];
+                if (form) {
+                    form.addEventListener("submit", function () {
+                        let btn = $(this).find(":submit")[0];
+                        if (btn) {
+                            btn.disabled = true;
+                        }
+                    });
+                }
+            });
+        })(jQuery);
+	</script>

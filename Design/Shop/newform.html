@@ -1,0 +1,660 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ապառիկ հայտերի առցանց համակարգ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="mainbody">
+
+        <div class="header">
+            <a href="index.html" class="logo"></a>
+            <span class="links">
+                <a href="change-password.html">Փոխել գաղտնաբառը</a> / <a href="login.html">Դուրս գալ</a>
+            </span>
+        </div>
+
+        <div class="container">
+
+
+            <br /><br />
+            <a href="#" class="login" data-toggle="modal" data-target="#timeout">Link just to invoke timeout message</a> /
+            <a href="#" class="login" data-toggle="modal" data-target="#request">Link just to invoke waiting message</a>
+            <br />
+
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab1">Նոր հայտի գրանցում</a></li>
+                <li><a data-toggle="tab" href="#tab2">Լրացուցիչ տվյալներ</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div id="tab1" class="tab-pane fade active in formcontainer">
+                    <form id="form-step-1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h1>Նոր հայտի գրանցում</h1>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Վարկի տվյալներ</h2>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="amount">Գումար <span class="mandatory">*</span></label>
+                                    <input id="amount" name="amount" type="text" class="form-control" maxlength="10" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="currency">Արժույթ <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option>AMD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Անձնական տվյալներ</h2>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Անուն (Հայերեն) <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name-hy">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ազգանուն (Հայերեն) <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="last-name-hy">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Հայրանուն (Հայերեն) <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name-hy">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group datepicker">
+                                    <label for="text">Ծննդյան ամսաթիվ <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Անձը հաստատող փաստաթղթեր</h2>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Սոցիալական քարտի համար <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Փաստաթղթի տեսակ <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Անձնագիր</option>
+                                            <option>ID քարտ</option>
+                                            <option>Այլ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Փաստաթղթի համար <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group datepicker">
+                                    <label for="text">Տրված <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group datepicker">
+                                    <label for="text">Վավերականության ժամկետ <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ում կողմից <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Փաստաթղթեր</h2>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <button class="btn btn-info">Տպել փաստաթղթերը</button>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                                <a href="#" class="addfile fileUpload">Կցել հարցումների համաձայնությունը<input id="uploadBtn" type="file" class="upload" /></a><br />
+                                <input class="filepath" id="uploadFile-one" placeholder="Չկա ընտրված փաստաթուղթ" disabled="disabled" />
+                            </div>
+                        </div>
+
+                        <div class="actions">
+                            <button class="btn btn-cancel">Չեղարկել</button>
+                            <button class="btn btn-default">Կատարել հարցում</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div id="tab2" class="tab-pane fade formcontainer">
+                    <form id="form-step-2">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h1>Լրացուցիչ տվյալներ</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ապրանքի տեսակը</label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option>Կենցաղային տեխնիկա</option>
+                                            <option>Համակարգչային տեխնիկա</option>
+                                            <option>Կահույք</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ակցիա</label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option>Հեռախոս 24 ամսով</option>
+                                            <option>Հեռախոս 36 ամսով</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ապրանքի ստացման եղանակը</label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option>-</option>
+                                            <option>Տեղում</option>
+                                            <option>Առաքումով</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Առաքման հասցեն</label>
+                                    <input type="text" class="form-control" id="name-en" placeholder="Քաղաք, Փողոց, տուն/շենք, բնակարան">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h2>Ապրանքի տվյալներ</h2>
+                            </div>
+                        </div>
+                        <div class="row products">
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ապրանքի անվանումը</label>
+                                    <input type="text" class="form-control" id="name-en" value="">
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Քանակը</label>
+                                    <input type="text" class="form-control" id="name-en" value="1">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Գինը</label>
+                                    <input type="text" class="form-control" id="name-en" >
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 padding-5-15">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-success">Ավելացնել</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 tags">
+                                <span class="tag">
+                                    iPhone 8 32Gb Black
+                                    <a href="#" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <span class="price">369,000դր.</span>
+                                    <span class="quantity">1</span>
+                                </span>
+                                <span class="tag">
+                                    iPhone 8 32Gb Black
+                                    <a href="#" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <span class="price">369,000դր.</span>
+                                    <span class="quantity">1</span>
+                                </span>
+                                <span class="tag">
+                                    iPhone 8 32Gb Black
+                                    <a href="#" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <span class="price">369,000դր.</span>
+                                    <span class="quantity">2</span>
+                                </span>
+                                <div class="total">
+                                    <span class="totalsum">1,107,000դր.</span>
+                                    Ապրանքների ընդհանուր գումար
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Վարկի տվյալներ</h2>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Տոկոսադրույք</label>
+                                    <input type="text" class="form-control" id="name-en" value="13" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ժամկետ</label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option>6 ամիս</option>
+                                            <option>12 ամիս</option>
+                                            <option>24 ամիս</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Գումար</label>
+                                    <input type="number" class="form-control" id="name-en" value="10,000,000">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Կանխավճար</label>
+                                    <input type="text" class="form-control" id="name-en" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Նախընտրելի մարման օր <span class="mandatory">*</span></label>
+                                    <input type="number" class="form-control" id="birth-date" placeholder="Օրինակ՝ 1 կամ 15">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Բանկի հետ հաղորդակցման եղանակ</label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Բանկում</option>
+                                            <option>Էլեկտրոնային փոստով</option>
+                                            <option>Փոստով</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-success">Հաշվարկել ամսական վճարի չափը</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="alert alert-success">
+                                        Ձեր ամսական վճարի չափը կազմում է <strong>21,000</strong> դրամ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Անձնական տվյալներ</h2>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Անուն (Անգլերեն) <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name-hy">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ազգանուն (Անգլերեն) <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="last-name-hy">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Ծննդավայր <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Հայաստանի Հանրապետություն</option>
+                                            <option>Վրաստան</option>
+                                            <option>Ռուսաստանի դաշնություն</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Քաղաքացիություն <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Հայաստանի Հանրապետություն</option>
+                                            <option>Վրաստան</option>
+                                            <option>Ռուսաստանի դաշնություն</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Բջջային հեռախոս 1<span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="mobile-phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Բջջային հեռախոս 2</label>
+                                    <input type="text" class="form-control" id="mobile-phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Քաղաքային հեռախոս <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="mobile-phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="email">Էլ. հասցե <span class="mandatory">*</span></label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Գրանցման հասցե</h2>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Երկիր <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Հայաստան</option>
+                                            <option>Վրաստան</option>
+                                            <option>Ռուսաստանի Դաշնություն</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Մարզ <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Արագածոտնի մարզ</option>
+                                            <option>Լոռու մարզ</option>
+                                            <option>Գեղարքունիկի մարզ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Քաղաք <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Երեան</option>
+                                            <option>Վանաձոր</option>
+                                            <option>Գյումրի</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Փողոց <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Բնակարան</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h2>Բնակության հասցե</h2>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" checked> Նույնն է ինչ գրանցման հասցեն</label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Երկիր <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Հայաստան</option>
+                                            <option>Վրաստան</option>
+                                            <option>Ռուսաստանի Դաշնություն</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Մարզ <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Արագածոտնի մարզ</option>
+                                            <option>Լոռու մարզ</option>
+                                            <option>Գեղարքունիկի մարզ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Քաղաք <span class="mandatory">*</span></label>
+                                    <div class="customselect">
+                                        <select>
+                                            <option selected>Երեան</option>
+                                            <option>Վանաձոր</option>
+                                            <option>Գյումրի</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Փողոց <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="text">Բնակարան</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 formblock">
+                                <h2>Փաստաթղթեր</h2>
+                            </div>
+                  <!--
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <button class="btn btn-info">Տպել փաստաթղթերը</button>
+                            </div>
+                  -->
+                            <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                                <a href="#" class="addfile fileUpload">Կցել անձը հաստատող փաստաթղթի պատճեն<input id="uploadBtn" type="file" class="upload" /></a><br />
+                                <input class="filepath" id="uploadFile-one" placeholder="Չկա ընտրված փաստաթուղթ" disabled="disabled" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 fileuploader">
+                                <a href="#" class="addfile fileUpload">Կցել սոցիալական քարտի պատճեն<input id="uploadBtn" type="file" class="upload" /></a><br />
+                                <input class="filepath" id="uploadFile-one" placeholder="Չկա ընտրված փաստաթուղթ" disabled="disabled" />
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Ունեմ հաշիվ Ամերիբանկում</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="actions">
+                            <button class="btn btn-cancel">Չեղարկել</button>
+                            <button class="btn btn-default">Հաստատել</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    <div class="footer">© 2017 AmeriaBank. All Rights Reserved.</div>
+    </div>
+</div>
+
+
+
+
+
+<!--Timeout Message-->
+<div id="timeout" class="modal login-reg timeout fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Թայմաութ</h4>
+            </div>
+            <div class="modal-body">
+                <p>Լրացված տվյալները հիշելու մաիսն ինֆո.....</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success">Հիշել</button>
+                <button class="btn btn-success">Շարունակել</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Error Message-->
+<div id="request" class="modal login-reg timeout fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Կատարվում է հարցում</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loader">Խնդրում ենք սպասել Ձեզ համար կատարվում է վարկի հարցում, որը կարող է տևել մի քանի րոպե։</div>
+            </div>
+            <div class="modal-body">
+                <div class="message success">
+                    Վարկի վերաբերյալ որոշում կայացնելու համար անհրաժեշտ են լրացուցիչ տվյալներ։ Բանկի աշխատակիցը Ձեզ հետ կապ կհաստատի առաջիկա 1 աշխատանքային օրվա ընթացքում։
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="message error">
+                    Ձեր վարկը ավտոմատ սքորինգի համակարգով մերժվել է։
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="message">
+                    Առկա է տեխնիկական խնդիր, խնդրում ենք փորձել ավելի ուշ։ Ձեր հայտը պահպանվել է <a href="hayter.html">Հայտեր</a> էջում։
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default disabled">Վերադառնալ գլխավոր էջ</button>
+                <button class="btn btn-success disabled">Շարունակել</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/jquery-1.12.4.js"></script>
+
+<!--Datepicker-->
+<link href="css/datepicker.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-datepicker-ui.js"></script>
+
+
+</body>
+</html>

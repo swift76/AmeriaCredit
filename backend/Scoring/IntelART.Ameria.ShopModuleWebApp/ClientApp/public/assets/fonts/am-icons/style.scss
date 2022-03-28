@@ -1,0 +1,114 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?8s59x1') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?8s59x1') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?8s59x1##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.am-icon-search {
+  &:before {
+    content: $am-icon-search; 
+  }
+}
+.am-icon-calendar {
+  &:before {
+    content: $am-icon-calendar; 
+  }
+}
+.am-icon-add {
+  &:before {
+    content: $am-icon-add; 
+  }
+}
+.am-icon-asc {
+  &:before {
+    content: $am-icon-asc; 
+  }
+}
+.am-icon-desc {
+  &:before {
+    content: $am-icon-desc; 
+  }
+}
+.am-icon-sort {
+  &:before {
+    content: $am-icon-sort; 
+  }
+}
+.am-icon-ban {
+  &:before {
+    content: $am-icon-ban; 
+  }
+}
+.am-icon-printer {
+  &:before {
+    content: $am-icon-printer; 
+  }
+}
+.am-icon-delete {
+  &:before {
+    content: $am-icon-delete; 
+  }
+}
+.am-icon-pdf {
+  &:before {
+    content: $am-icon-pdf; 
+  }
+}
+.am-icon-envelope {
+  &:before {
+    content: $am-icon-envelope; 
+  }
+}
+.am-icon-exel {
+  &:before {
+    content: $am-icon-exel; 
+  }
+}
+.am-icon-avatar {
+  &:before {
+    content: $am-icon-avatar; 
+  }
+}
+.am-icon-logout {
+  &:before {
+    content: $am-icon-logout; 
+  }
+}
+.am-icon-print {
+  &:before {
+    content: $am-icon-print; 
+  }
+}
+.am-icon-refresh {
+  &:before {
+    content: $am-icon-refresh; 
+  }
+}
+.am-icon-cross {
+  &:before {
+    content: $am-icon-cross; 
+  }
+}
+

@@ -1,0 +1,10 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetACRAClientQueryResult(@SOCIAL_CARD_NUMBER	char(10))
+AS
+	declare @CURRENT_DATE date=getdate()
+	select ID
+		,IS_BLOCKED
+		,FICO_SCORE
+	from Common.ACRA_CLIENT_QUERY_RESULT with (NOLOCK)
+	where SOCIAL_CARD_NUMBER=@SOCIAL_CARD_NUMBER
+		and convert(date,QUERY_DATE)=@CURRENT_DATE
+GO

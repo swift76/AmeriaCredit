@@ -1,0 +1,24 @@
+.icon-link {
+    display: flex;
+    align-items: center;
+
+    >.icon {
+        margin-right: 5px;
+    }
+}
+
+.ws-nowrap {
+    white-space: nowrap;
+}
+
+.text-primary-darken {
+    color: darken($primary, 20%);
+}
+
+.outline-none {
+    outline: none !important;
+}
+
+.min-h-200 {
+    min-height: 200px;
+}

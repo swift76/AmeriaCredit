@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ապառիկ հայտերի առցանց համակարգ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="mainbody">
+
+    <div class="header">
+        <a href="index.html" class="logo"></a>
+        <span class="links">
+            <a href="change-password.html">Փոխել գաղտնաբառը</a> / <a href="login.html">Դուրս գալ</a>
+        </span>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                <a href="newform.html" class="export">Արտահանել Excel</a>
+                <a href="newform.html" class="add">Նոր հայտի գրանցում</a>
+                <h1>Հայտերի ցուցակ</h1>
+                <div class="applications">
+
+                <div class="daterange datepicker">
+                    <input type="text" id="datepicker-from" placeholder="Սկսած">
+                    <input type="text" id="datepicker-to" placeholder="Մինչեւ">
+                </div>
+
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Վարկառու</th>
+                    <th>Ստեղծված է</th>
+                    <th>Վարկի Գումար</th>
+                    <th>Կարգավիճակ</th>
+                    <th>Գործողություն</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Էդգար Դարբինյան</td>
+                    <td>05.04.2017</td>
+                    <td>100.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Արսեն Հարությունյան</td>
+                    <td>05.04.2017</td>
+                    <td>125.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                    </td>
+                </tr>
+                <tr class="failed">
+                    <td>Վասպուր Գարեգինյան</td>
+                    <td>05.04.2017</td>
+                    <td>170.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Արտավազդ Սոխիկյան</td>
+                    <td>05.04.2017</td>
+                    <td>525.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>Արմեն Մնացականյան</td>
+                    <td>05.04.2017</td>
+                    <td>75.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Անահիտ Գաբրիելյան</td>
+                    <td>05.04.2017</td>
+                    <td>78.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Սոխակ Կոտիկյան</td>
+                    <td>05.04.2017</td>
+                    <td>100.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>Էդգար Դարբինյան</td>
+                    <td>05.04.2017</td>
+                    <td>100.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Արսեն Հարությունյան</td>
+                    <td>05.04.2017</td>
+                    <td>125.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Վասպուր Գարեգինյան</td>
+                    <td>05.04.2017</td>
+                    <td>170.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Արտավազդ Սոխիկյան</td>
+                    <td>05.04.2017</td>
+                    <td>525.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr class="failed">
+                    <td>Արմեն Մնացականյան</td>
+                    <td>05.04.2017</td>
+                    <td>75.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Անահիտ Գաբրիելյան</td>
+                    <td>05.04.2017</td>
+                    <td>78.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Սոխակ Կոտիկյան</td>
+                    <td>05.04.2017</td>
+                    <td>100.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Էդգար Դարբինյան</td>
+                    <td>05.04.2017</td>
+                    <td>100.000դր</td>
+                    <td>Մերժված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Արսեն Հարությունյան</td>
+                    <td>05.04.2017</td>
+                    <td>125.000դր</td>
+                    <td>Հաստատված է</td>
+                    <td>
+                        <a class="delete" href="#"></a>
+                        <a class="print" href="#"></a>
+                        <a class="send" href="#"></a>
+                        <a class="cancel" href="#"></a>
+                        <a class="sent" href="#"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">© 2017 AmeriaBank. All Rights Reserved.</div>
+
+</div>
+
+
+<script src="js/jquery-1.12.4.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+
+<!--Datepicker-->
+<link href="css/datepicker.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-datepicker-ui.js"></script>
+
+<script src="js/custom.js"></script>
+
+</body>
+</html>

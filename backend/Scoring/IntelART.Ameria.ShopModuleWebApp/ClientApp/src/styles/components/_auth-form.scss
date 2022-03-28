@@ -1,0 +1,43 @@
+.auth-form {
+    max-width: 450px;
+    min-height: 300px;
+    position: relative;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 3px #004a63 solid;
+    box-shadow: 0 0 10px #ccc;
+    padding: 30px;
+    margin: 60px auto 0;
+
+    @include media-breakpoint-up(sm) {
+        padding: 40px 50px 20px;
+    }
+
+    .logo {
+        height: 33px;
+        width: 240px;
+        margin: 0 0 40px;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: 18px;
+        margin: 0 0 30px;
+        line-height: 1.3;
+    }
+
+    .form-group {
+        width: 100%;
+        margin: 0 0 8px;
+    }
+
+    .auth-btn {
+        width: 280px;
+        border-radius: 24px;
+        margin: 20px auto 0;
+        display: block;
+        color: #fff;
+    }
+}

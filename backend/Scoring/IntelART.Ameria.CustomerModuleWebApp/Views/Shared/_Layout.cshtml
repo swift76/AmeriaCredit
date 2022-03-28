@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.ameriabank.am/page.aspx?id=166&lang=28 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>@ViewData["Title"]</title>
+    <!-- META -->
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="Ameriabank CJSC">
+    <link rel="icon" href="https://www.ameriabank.am/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.ameriabank.am/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/default.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/custom.css" rel="stylesheet" type="text/css">
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26100454-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-26100454-11');
+</script>
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-57L2ZV2');</script>
+	<!-- End Google Tag Manager -->
+</head>
+<body>
+    @if (ViewBag.DisableIERedirect == null)
+    {
+        <script type="text/javascript">
+            @*IE*@
+            var msie = window.navigator.userAgent.indexOf('MSIE ');
+            if (msie > -1) {
+                document.location.href = "/shared/unsupported";
+            }
+        </script>
+    }
+    <div class="container-fluid header">
+        <div class="userlogin">
+            @Html.Partial("../Login.cshtml")
+        </div>
+        <div class="logo"><a href="http://www.ameriabank.am"><img src="/img/logo.png"></a></div>
+    </div>
+
+    <script src="/js/jquery-1.12.4.js"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.number.min.js" type="text/javascript"></script>
+    <script src="/js/globals.js" type="text/javascript"></script>
+    <script src="/js/utils.js" type="text/javascript"></script>
+
+    <script>
+        //Input number formating
+        (function ($, undefined) {
+            "use strict";
+            // When ready.
+            $(function () {
+                var $form = $("#form");
+                var $input = $form.find("input.formating");
+                $input.on("keyup", function (event) {
+                    // When user select text in the document, also abort.
+                    var selection = window.getSelection().toString();
+                    if (selection !== '') {
+                        return;
+                    }
+                    // When the arrow keys are pressed, abort.
+                    if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+                        return;
+                    }
+                    var $this = $(this);
+                    // Get the value.
+                    var input = $this.val();
+                    var input = input.replace(/[\D\s\._\-]+/g, "");
+                    input = input ? parseInt(input, 10) : 0;
+                    $this.val(function () {
+                        return (input === 0) ? "" : input.toLocaleString("en-US");
+                    });
+                });
+                /* When Form Submitted */
+                $form.on("submit", function (event) {
+                    var $this = $(this);
+                    var arr = $this.serializeArray();
+                    for (var i = 0; i < arr.length; i++) {
+                        arr[i].value = arr[i].value.replace(/[($)\s\._\-]+/g, ''); // Sanitize the values.
+                    };
+                    event.preventDefault();
+                });
+            });
+        })(jQuery);
+    </script>
+
+    <!--Datepicker-->
+    <link href="/css/datepicker.css" rel="stylesheet" type="text/css">
+    <script src="/js/datepicker.js"></script>
+
+    @RenderBody()
+
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57L2ZV2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

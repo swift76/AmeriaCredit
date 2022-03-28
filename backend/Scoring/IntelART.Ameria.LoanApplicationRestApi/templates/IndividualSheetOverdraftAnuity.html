@@ -1,0 +1,701 @@
+﻿<html>
+    <head>
+        <style>
+            /* @page { size: auto;  margin: 0mm; }  */
+            @media print
+            {
+                #bank-logo
+                {
+                    /*content: url("ReportLogo.jpg");*/
+                    vertical-align: top;
+                }
+            }
+            .table-cell
+            {
+                /* float: left; */
+                display: table-cell;
+            }
+            .bottom-align
+            {
+                vertical-align: bottom;
+            }
+            .table-row
+            {
+                display: table-row;
+            }
+            .field-label
+            {
+                font-weight: bold;
+                padding: 3px;
+                width: 50%;
+            }
+            .field-value
+            {
+                font-weight: bold;
+                /* margin: 10px; */
+                padding: 3px;
+                border: 1px solid grey;
+                background-color: #cbd9e9;
+                overflow-wrap: break-word;
+                word-break: break-all;
+            }
+            .emphasise
+            {
+                font-weight: bold;
+                text-decoration-line: underline;
+            }
+            .bold {
+                font-weight: bold;
+            }
+            .red
+            {
+                color: red;
+            }
+            .field-note
+            {
+                font-weight: normal;
+                padding: 1px 3px 8px 3px;
+                font-size: 8pt;
+            }
+            .section-header
+            {
+                font-size: 10pt;
+                font-weight: bold;
+                text-decoration-line: underline;
+                font-style: italic;
+                margin-top: 5px;
+                padding: 3px;
+            }
+            .section-subheader
+            {
+                font-size: 10pt;
+                font-weight: bold;
+                margin-top: 2px;
+                padding: 3px;
+            }
+            .signature-box .signature-text
+            {
+                vertical-align: bottom;
+                font-size: 8pt;
+                border-top: 1px solid black;
+                margin-left: 5px;
+                margin-right: 5px;
+                padding-top: 5px;
+            }
+            .notice-area
+            {
+                padding: 3px;
+                margin: 3px;
+                border-style: dashed;
+                border-radius: 5px;
+                border-color: grey;
+                border-width: 1px;
+                font-size: 8pt;
+            }
+            div.important:before {
+                content: url('/img/forms/important.png');
+                display: block;
+                float: left;
+                margin-right: 5px;
+                margin-bottom: 5px;
+            }
+            div.important
+            {
+                min-height: 30px;
+            }
+            div.info-block:before {
+                content: url('/img/forms/question.png');
+                display: block;
+                float: left;
+                margin-right: 5px;
+                margin-bottom: 5px;
+            }
+            div.info-block {
+                min-height: 52px;
+            }
+            #appendix-note-area
+            {
+                width: 120px;
+                text-align: right;
+                font-size: 9pt;
+            }
+            #form-title
+            {
+                text-align: center;
+                font-size: 14pt;
+            }
+            #form-notice
+            {
+                text-align: center;
+                padding: 5px;
+                border-style: dashed;
+                border-radius: 5px;
+                border-color: grey;
+                border-width: 1px;
+                font-size: 8pt;
+            }
+            #bank-logo
+            {
+                width: 80px;
+                height: 80px;
+                padding-right: 15px;
+                /*background-image: url("ReportLogo.jpg");*/ 
+                background-repeat: no-repeat;
+            }
+            #appendix-note2
+            {
+                font-weight: bold;
+            }
+            #credit-personal-info-form
+            {
+                font-size: 9pt;
+            }
+            .table
+            {
+                display: table;
+            }
+            .full-width
+            {
+                width: 100%;
+            }
+            .half-page-column
+            {
+                width: 50%;
+                display: block;
+                float: left;
+            }
+        </style>
+    </head>
+<body>
+    <div id="credit-personal-info-form" class="table">
+        <div class="table-row">
+            <div class="table">
+                <div id="bank-logo" class="table-cell">
+                    <img src="/img/forms/ReportLogo.jpg" style="vertical-align: top;" height="80" width="80"  /> 
+                </div>
+
+                <div class="table-cell">
+                    <div id="form-title">
+                        ՎԱՐԿԱՅԻՆ ԳԾԻ (ՕՎԵՐԴՐԱՖՏԻ) ԷԱԿԱՆ ՊԱՅՄԱՆՆԵՐԻ ԱՆՀԱՏԱԿԱՆ ԹԵՐԹԻԿ
+                    </div>
+                    <div id="form-notice" class="important red">
+                        Հարգելի՛ վարկառու, բոլոր վարկատուները <span class="bold">պարտավոր են տրամադրել նմանատիպ թերթիկ,</span> որում ամփոփված են սպառողական վարկի էական պայմանները, որոնք չպետք է լինեն ավելի խիստ, քան նույն վարկի համար Ձեզ տրամադրված ԸՆԴՀԱՆՐԱԿԱՆ ԹԵՐԹԻԿՈՒՄ նշվածները:
+                    </div>
+                </div>
+                <div id="appendix-note-area" class="table-cell">
+                    <div id="appendix-note1">
+                        Հավելված 3
+                    </div>
+                    <div id="appendix-note2">
+                        «Հավելված» 3
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="half-page-column">
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            1.1 Թերթիկի համար
+                        </div>
+                        <div class="table-cell field-value">
+                            {ID}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            1.2 Վարկային հայտի դրական որոշման մասին վարկառուին տեղեկացման ամսաթիվ
+                        </div>
+                        <div class="table-cell field-value">
+                            {DATE} թ.
+                        </div>
+                    </div>
+                </div>
+                <div class="section-header">
+                    3. ՎԱՐԿԻ ՀԻՄՆԱԿԱՆ ՊԱՅՄԱՆՆԵՐ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            3.1 Վարկի անվանում
+                        </div>
+                        <div class="table-cell field-value">
+                            Օվերդրաֆտ՝ մարման ժամանակացույցով
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            3.2 Վարկի գումար
+                        </div>
+                        <div class="table-cell field-value">
+                            {LOAN_AMOUNT}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            3.3 Վարկի ժամկետ
+                        </div>
+                        <div class="table-cell field-value">
+                            {MONTH_DURATION}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            3.4 Տարեկան անվանական % (ՏԱՏ)
+                        </div>
+                        <div class="table-cell field-value">
+                            {LOAN_INTEREST}
+                        </div>
+                    </div>
+                </div>
+                <div class="field-note"> 
+                    Այն տոկոսադրույքն է, որի հիման վրա հաշվարկվում են վարկի տոկոսագումարները:
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            3.5 Տարեկան փաստացի % (ՏՓՏ)
+                        </div>
+                        <div class="table-cell field-value red">
+                            {LOAN_INTEREST_2}
+                        </div>
+                    </div>
+                </div>
+                <div class="field-note">
+                    Այն տոկոսադրույքն է, որում, բացի վարկի տոկոսագումարներից, հաշվի են առնված վարկի տրամադրման և սպասարկման գծով բոլոր պարտադիր վճարները: Վարկային պայմանագրի կնքման դեպքում Ձեր վարկի ՏՓՏ-ն չի կարող լինել ավելին, քան այս թերթիկում ներկայացված ՏՓՏ-ն:
+                </div>
+                <div class="section-header">
+                    4. ՎԱՐԿԻ ՀԵՏ ԿԱՊՎԱԾ ՎՃԱՐՆԵՐ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            4.1 Վարկի մարման ընդհանուր վճար
+                            <div class="field-note">
+                                (վարկի մայր գումար + այլ վճարներ)
+                            </div>
+                        </div>
+                        <div class="table-cell field-value">
+                            {TOTAL_REPAYMENT} ՀՀ դրամ
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            4.2 Այլ վճարներ
+                            <div class="field-note">
+                                (7-րդ կետով սահմանված բոլոր այլ վճարների ընդհանուր գումար)
+                            </div>
+                        </div>
+                        <div class="table-cell field-value">
+                            {OTHER_PAYMENTS} ՀՀ դրամ
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell signature-box">
+                            <div class="signature-text">
+                                Վարկառուի ստորագրություն
+                            </div>
+                        </div>
+                        <div class="table-cell signature-box">
+                            <div class="signature-text">
+                                Երաշխավորի ստորագրություն
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-header">
+                    5. ԱՊԱՀՈՎՎԱԾՈՒԹՅՈՒՆ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            5.1 Գրավ
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            5.2 Երաշխավորություն
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                </div>
+                <div class="section-header">
+                    6. ՎԱՐԿԻ ԱՅԼ ՊԱՅՄԱՆՆԵՐ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            6.1 Արտոնյալ ժամկետ
+                            <div class="field-note">
+                                (Գրեյս պերիոդ)
+                            </div>
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի սահմանվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            6.2 Հաշվի նվազագույն շարժ և վճարման կարգ
+                        </div>
+                        <div class="table-cell field-value">
+                            Ամսական
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            6.3 Չօգտագործված մասի դիմաց հաշվարկվող %
+                        </div>
+                        <div class="table-cell field-value">
+                            0%
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell signature-box">
+                            <div class="signature-text">
+                                Վարկառուի ստորագրություն
+                            </div>
+                        </div>
+                        <div class="table-cell signature-box">
+                            <div class="signature-text">
+                                Երաշխավորի ստորագրություն
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="half-page-column">
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            2.1 Վարկատուի անվանումը
+                        </div>
+                        <div class="table-cell field-value">
+                            {CREDITOR_NAME}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Գտնվելու վայր
+                        </div>
+                        <div class="table-cell field-value">
+                            {CREDITOR_ADDRESS}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Հեռ.
+                        </div>
+                        <div class="table-cell field-value">
+                            {CREDITOR_PHONE}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Էլ.փոստ
+                        </div>
+                        <div class="table-cell field-value">
+                            {CREDITOR_EMAIL}
+                        </div>
+                    </div>
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            2.2 Վարկառուի անուն, ազգանուն
+                        </div>
+                        <div class="table-cell field-value">
+                            {CUSTOMER_NAME}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Բնակության վայր
+                        </div>
+                        <div class="table-cell field-value">
+                            {CUSTOMER_ADDRESS}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Հեռ.
+                        </div>
+                        <div class="table-cell field-value">
+                            {CUSTOMER_PHONE}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Էլ.փոստ
+                        </div>
+                        <div class="table-cell field-value">
+                            {CUSTOMER_EMAIL}
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            Վարկառուի հետ հաղորդակցման եղանակ
+                        </div>
+                        <div class="table-cell field-value">
+                            {CUSTOMER_PREFERRED_COMMUNICATION}
+                        </div>
+                    </div>
+                </div>
+                <div class="section-header">
+                    7. ԱՅԼ ՎՃԱՐՆԵՐ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.1 Վարկային հայտի ուսումնասիրության
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.2 Վարկի սպասարկման
+                        </div>
+                        <div class="table-cell field-value">
+                            {OTHER_PAYMENTS_LOAN_SERVICE_FEE} ՀՀ դրամ Միանվագ
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.3 Գրավի գնահատման
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.4 Նոտարական վավերացման
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.5 Գրավի ապահովագրության
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.6 Քարտի սպասարկման
+                        </div>
+                        <div class="table-cell field-value">
+                            {OTHER_PAYMENTS_CARD_SERVICE_FEE} ՀՀ դրամ Ընդամենը
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.7 Կանխիկացման (վարկատուի բանկոմատներից կանխիկացման)
+                        </div>
+                        <div class="table-cell field-value">
+                            {OTHER_PAYMENTS_CASH_OUT_FEE} ՀՀ դրամ` ամբողջությամբ կանխիկացնելու դեպքում
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell field-label">
+                            7.8 Այլ միջնորդավճարներ
+                        </div>
+                        <div class="table-cell field-value">
+                            Չի պահանջվում
+                        </div>
+                    </div>
+                </div>
+                <div class="notice-area">
+                    ՍՈՒՅՆ ԹԵՐԹԻԿՈՒՄ ԱՌԱՋԱՐԿՎՈՂ ՊԱՅՄԱՆՆԵՐԸ ԳՈՐԾՈՒՄ ԵՆ ՎԱՐԿԱՅԻՆ ՀԱՅՏԻ ՎԵՐԱԲԵՐՅԱԼ ԴՐԱԿԱՆ ՈՐՈՇՄԱՆ ՄԱՍԻՆ ՁԵԶ ՏԵՂԵԿԱՑՆԵԼՈՒՑ ՀԵՏՈ <span class="red emphasise">10 ԱՇԽԱՏԱՆՔԱՅԻՆ ՕՐ</span>:  ՍՈՒՅՆ ԹԵՐԹԻԿԸ ՉԻ ՓՈԽԱՐԻՆՈՒՄ ՎԱՐԿԱՅԻՆ ԵՎ ԵՐԱՇԽԱՎՈՐՄԱՆ ՊԱՅՄԱՆԱԳՐԵՐԻՆ: ՊԱՅՄԱՆԱԳՐԻ ՑԱՆԿԱՑԱԾ ԴՐՈՒՅԹԻ ՀԵՏ ԿԱՊՎԱԾ ՀԱՐՑԵՐ ՈՒՆԵՆԱԼՈՒ ԴԵՊՔՈՒՄ ԽՆԴՐՈՒՄ  ԵՆՔ ԱՌԱՋՆՈՐԴՎԵԼ ՁԵՐ ՊԱՅՄԱՆԱԳՐՈՎ ԵՎ ՀՆԱՐԱՎՈՐՈՒԹՅԱՆ ԴԵՊՔՈՒՄ ԴԻՄԵԼ ՎԱՐԿԱՏՈՒԻՆ՝ ՊԱՐԶԱԲԱՆՈՒՄՆԵՐ ՍՏԱՆԱԼՈՒ ՀԱՄԱՐ:
+                </div>
+            </div>
+        </div>
+        <div class="section-header important">
+            8. ՁԵՐ ԻՐԱՎՈՒՆՔԸ
+        </div>
+        <div>
+            Դուք իրավունք ունեք ցանկացած չափով ժամկետից շուտ մարել վարկը` առանց տույժեր կամ տուգանքներ վճարելու:
+        </div>
+        <div class="section-header">
+            9. ՊԱՐՏԱՎՈՐՈՒԹՅՈՒՆՆԵՐԻ ՉԿԱՏԱՐՄԱՆ ԴԵՊՔՈՒՄ ՁԵԶ ՀԱՄԱՐ ՀՆԱՐԱՎՈՐ ԲԱՑԱՍԱԿԱՆ ՀԵՏԵՎԱՆՔՆԵՐԸ
+        </div>
+        <div class="table-row">
+        <div class="half-page-column">
+            <div class="section-subheader">
+                ՏՈՒՅԺ/ՏՈՒԳԱՆՔՆԵՐ
+            </div>
+            <div class="table full-width">
+                <div class="table-row">
+                    <div class="table-cell field-label">
+                        9.1 Վարկի մայր գումարը չվճարելու դեպքում
+                    </div>
+                    <div class="table-cell field-value">
+                        ժամկետանց Վարկի յուրաքանչյուր օրվա համար կիրառվում է տույժ 0,13%-ի չափով։
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell field-label">
+                        9.2 Տոկոսագումարները չվճարելու դեպքում
+                    </div>
+                    <div class="table-cell field-value">
+                        ժամկետանց Տոկոսի յուրաքանչյուր օրվա համար կիրառվում է տույժ 0,13%-ի չափով։
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell field-label">
+                        9.3 Այլ վճարները չվճարելու դեպքում
+                    </div>
+                    <div class="table-cell field-value">
+                        չի պահանջվում
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="half-page-column">
+            <div class="notice-area important">
+                9.4 Եթե վարկատուի նկատմամբ ունեք չմարված պարտավորություն, ապա Ձեր կողմից պարտավորությունները կատարելու դեպքում մարումները  իրականացվում են հետևյալ հերթականությամբ`
+                <ol>
+                    <li>Տույժ/տուգանքներ</li>
+                    <li>Տոկոսագումարներ</li>
+                    <li>Մայր գումար</li>
+                </ol>
+            </div>
+        </div>
+        </div>
+    
+        <div class="notice-area">
+            9.5 Ձեր գրավի առարկայի վրա օրենքով սահմանված կարգով կարող է <span class="emphasise">բռնագանձում</span> տարածվել:
+        </div>
+        <div class="notice-area">
+            9.6 Այն դեպքում, երբ գրավի իրացումից հնարավոր չէ բավարար գումար ստանալ, ապա Ձեր այլ անձնական գույքը կարող է օգտագործվել վարկի մարման համար:
+        </div>
+        <div class="notice-area">
+            9.7 Ձեր մասին տեղեկատվությունը օրենքով սահմանված կարգով կարող է գրանցվել <span class="emphasise">Վարկային բյուրոյում</span>: Դա կարող է խոչընդոտել Ձեզ` ապագայում վարկ ստանալու ժամանակ:
+        </div>
+        <div class="section-header" style="text-align: center;">
+            ՏԵՂԵԿԱՏՎՈՒԹՅՈՒՆ ԵՐԱՇԽԱՎՈՐԻ ՀԱՄԱՐ
+        </div>
+        <div class="section-subheader">
+            ԵՐԲ ՀԱՆԴԵՍ ԵՔ ԳԱԼԻՍ ՈՐՊԵՍ ԵՐԱՇԽԱՎՈՐ, ԱՊԱ՝
+        </div>
+        <div class="notice-area" style="text-align: center;">
+            <div class="section-subheader">
+                ԴՈՒՔ ԵՎՍ ԿՐՈՒՄ ԵՔ ՎԱՐԿԻ ՄԱՐՄԱՆ ՊԱՏԱՍԽԱՆԱՏՎՈՒԹՅՈՒՆԸ,
+            </div>
+            այսինքն՝ երբ վարկառուն չի կատարում կամ թերի է կատարում իր պարտավորությունը, ապա վարկի չմարված մասի պարտավորությունները տարածվում են Ձեզ վրա:
+        </div>
+        <div class="notice-area" style="text-align: center;">
+            <div class="section-subheader">
+                ԻՐԱՎՈՒՆՔ ՈՒՆԵՔ ՍՏԱՆԱԼ ՀԱՏՈՒՑՈՒՄ ՎԱՐԿԱՌՈՒԻՑ ՎԱՐԿԻ ՎՃԱՐՄԱՆ ՀԱՄԱՐ
+            </div>
+            այսինքն՝ Դուք կարող եք վարկառուից պահանջել հատուցել վարկատուին վճարած գումարի տոկոսներն ու վարկառուի փոխարեն պատասխանատվությունը կրելու կապակցությամբ կրած այլ վնասները:
+        </div>
+        <div class="notice-area" style="text-align: center;">
+            <div class="section-subheader">
+                ՎԱՐԿԱՏՈՒՆ ՊԱՐՏԱՎՈՐ Է ՁԵԶ ՆԱԽԱԶԳՈՒՇԱՑՆԵԼ ՎԱՐԿԻ ՄԱՐՄԱՆ ՎԵՐԱԲԵՐՅԱԼ
+            </div>
+            այսինքն՝ երբ վարկառուն չի կատարում կամ թերի է կատարում իր պարտավորությունը, ապա Դուք պարտավոր եք վարկատուի կողմից այդ մասին նախազգուշացվելուց հետո երաշխավորության պայմանագրով սահմանված ժամկետում մարել վարկի չմարված պարտավորությունը:
+        </div>
+        <div class="notice-area" style="text-align: center;">
+            <div class="section-subheader">
+                ԿԱՐՈՂ ԵՔ ՀԱՅՏՆՎԵԼ «ՎԱՏ ՎԱՐԿԱՌՈՒՆԵՐԻ ՑՈՒՑԱԿՈՒՄ»
+            </div>
+            այսինքն՝ վարկառուի կողմից վարկի չմարման դեպքում Դուք կարող եք գրանցվել Վարկային բյուրոյում, որտեղ ձևավորվում է Ձեր վարկային պատմությունը: Դա կարող է խոչընդոտել Ձեզ՝ ապագայում վարկ ստանալու ժամանակ:
+        </div>
+        <div class="notice-area info-block">
+            <div class="section-subheader">
+                Ի՞ՆՉ Է ՎԱՐԿԱՅԻՆ ՊԱՏՄՈՒԹՅՈՒՆԸ:
+            </div>
+            <p>
+                Վարկային պատմությունը Ձեր ֆինանսական պարտավորությունների կատարման վերաբերյալ տեղեկությունների ամբողջությունն է, որը հավաքվում, կուտակվում և պարբերաբար նորացվում է ինչպես Ձեզ վարկ տրամադրած առանձին վարկատուների, այնպես էլ Վարկային բյուրոյի կողմից:
+            </p>
+            <p>
+                <span class="emphasise">Դուք իրավունք ունեք տարեկան մեկ անգամ անվճար ձեռք բերել Ձեր վարկային պատմությունը ԱՔՌԱ վարկային բյուրոյից՝</span> այցելելով Մ. Խորենացու փող. 15, «Էլիտ Պլազա» բիզնես կենտրոն, 9-րդ հարկ:
+            </p>
+            <p>
+                Վարկային պատմության մասին ավելի մանրամասն կարող եք իմանալ www.acra.am կայքից:
+            </p>
+        </div>
+
+        <div class="table-row">
+            <div class="half-page-column">
+                <div class="notice-area" style="font-weight: bold;">
+                    ՀԱՍՏԱՏՈՒՄ ԵՄ, ՈՐ ՍՈՒՅՆ ԹԵՐԹԻԿՈՒՄ ՆԵՐԿԱՅԱՑՎԱԾ ՏԵՂԵԿՈՒԹՅՈՒՆՆԵՐԸ ՃՇԳՐԻՏ ԵՆ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <div class="signature-box">&nbsp;
+                                <div class="signature-text">
+                                    վարկատուի ստորագրություն
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-cell bottom-align">
+                            {SIGNATURE_DATE}
+                            <div class="form-notice">
+                                Ամսաթիվ (սույն թերթիկի տրամադրման)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="half-page-column">
+                <div class="notice-area" style="font-weight: bold;">
+                    ՀԱՍՏԱՏՈՒՄ ԵՄ, ՈՐ ՆԱԽՔԱՆ ՊԱՅՄԱՆԱԳՐԻ ԿՆՔՈՒՄԸ ՍՏԱՑԵԼ ԵՎ ՀԱՍԿԱՑԵԼ ԵՄ ՍՈՒՅՆ ԹԵՐԹԻԿՈՒՄ ՆԵՐԿԱՅԱՑՎԱԾ ԲՈԼՈՐ ՏԵՂԵԿՈՒԹՅՈՒՆՆԵՐԸ
+                </div>
+                <div class="table full-width">
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <div class="signature-box">&nbsp;
+                                <div class="signature-text">
+                                    վարկառուի ստորագրություն
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-cell bottom-align">
+                            {SIGNATURE_DATE1}
+                            <div class="form-notice">
+                                Ամսաթիվ
+                            </div>
+                        </div>
+                    </div>
+                     <div class="table-row">
+                        <div class="table-cell">
+                            <div class="signature-box">&nbsp;
+                                <div class="signature-text">
+                                    երաշխավորի ստորագրություն
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-cell bottom-align">
+                            {SIGNATURE_DATE2}
+                            <div class="form-notice">
+                                Ամսաթիվ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notice-area">
+            ՍՈՒՅՆ ԹԵՐԹԻԿՈՒՄ ԱՌԱՋԱՐԿՎՈՂ ՊԱՅՄԱՆՆԵՐԸ ԳՈՐԾՈՒՄ ԵՆ ՎԱՐԿԱՅԻՆ ՀԱՅՏԻ ՎԵՐԱԲԵՐՅԱԼ ԴՐԱԿԱՆ ՈՐՈՇՄԱՆ ՄԱՍԻՆ ՁԵԶ ՏԵՂԵԿԱՑՆԵԼՈՒՑ ՀԵՏՈ <span class="red emphasise">10 ԱՇԽԱՏԱՆՔԱՅԻՆ ՕՐ</span>: ՍՈՒՅՆ ԹԵՐԹԻԿԸ ՉԻ ՓՈԽԱՐԻՆՈՒՄ ՎԱՐԿԱՅԻՆ ԵՎ ԵՐԱՇԽԱՎՈՐՄԱՆ ՊԱՅՄԱՆԱԳՐԵՐԻՆ: ՊԱՅՄԱՆԱԳՐԻ ՑԱՆԿԱՑԱԾ ԴՐՈՒՅԹԻ ՀԵՏ ԿԱՊՎԱԾ ՀԱՐՑԵՐ ՈՒՆԵՆԱԼՈՒ ԴԵՊՔՈՒՄ ԽՆԴՐՈՒՄ  ԵՆՔ ԱՌԱՋՆՈՐԴՎԵԼ ՁԵՐ ՊԱՅՄԱՆԱԳՐՈՎ ԵՎ ՀՆԱՐԱՎՈՐՈՒԹՅԱՆ ԴԵՊՔՈՒՄ ԴԻՄԵԼ ՎԱՐԿԱՏՈՒԻՆ՝ ՊԱՐԶԱԲԱՆՈՒՄՆԵՐ ՍՏԱՆԱԼՈՒ ՀԱՄԱՐ:
+        </div>
+
+    </div>
+        
+</body>
+</html>

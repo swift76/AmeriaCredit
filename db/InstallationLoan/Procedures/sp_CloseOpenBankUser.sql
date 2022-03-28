@@ -1,0 +1,43 @@
+if exists (select * from sys.objects where name='sp_CloseOpenBankUser' and type='P')
+	drop procedure IL.sp_CloseOpenBankUser
+GO
+
+create procedure IL.sp_CloseOpenBankUser(@BANK_USER_ID			int,
+										 @OPERATION_DETAILS		nvarchar(max),
+										 @APPLICATION_USER_ID	int,
+										 @CLOSEOPEN				bit)
+AS
+	declare @OperationLogID int,@CLOSEOPENTEXTVALUE varchar(50),@CLOSEOPENNUMERICVALUE tinyint,@CLOSE_DATE datetime
+
+	if (@CLOSEOPEN=0)
+	BEGIN
+		set @CLOSEOPENTEXTVALUE='OPEN'
+		set @CLOSEOPENNUMERICVALUE = 1
+		set @CLOSE_DATE = null
+	END
+	else
+	BEGIN
+		set @CLOSEOPENTEXTVALUE='CLOSE'
+		set @CLOSEOPENNUMERICVALUE = 2
+		set @CLOSE_DATE = getdate()
+	END
+
+	BEGIN TRANSACTION
+
+	BEGIN TRY
+		insert into IL.BANK_APPLICATION_OPERATION_LOG (APPLICATION_USER_ID,BANK_OBJECT_CODE,BANK_OPERATION_CODE,ENTITY_ID,OPERATION_DETAILS)
+		values (@APPLICATION_USER_ID,'BANKUSER',@CLOSEOPENTEXTVALUE,@BANK_USER_ID,@OPERATION_DETAILS)
+
+		update Common.APPLICATION_USER
+			set OBJECT_STATE_ID=@CLOSEOPENNUMERICVALUE,CLOSE_DATE=@CLOSE_DATE
+			where ID=@BANK_USER_ID
+
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		declare @ErrorMessage nvarchar(4000) = ERROR_MESSAGE()
+		RAISERROR (@ErrorMessage, 17, 1)
+		RETURN
+	END CATCH
+GO

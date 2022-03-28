@@ -1,0 +1,12 @@
+if exists (select * from sys.objects where name='BANK_OPERATION' and type='U')
+	drop table IL.BANK_OPERATION
+GO
+
+CREATE TABLE IL.BANK_OPERATION (
+	CODE		varchar(20)		NOT NULL,
+	DESCRIPTION	nvarchar(50)	NOT NULL
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iBANK_OPERATION1 ON IL.BANK_OPERATION(CODE)
+GO

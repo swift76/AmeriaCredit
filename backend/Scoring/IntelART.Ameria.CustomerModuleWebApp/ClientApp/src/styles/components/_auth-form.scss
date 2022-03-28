@@ -1,0 +1,42 @@
+.auth-form-wrapper {
+    display: block;
+    margin: auto;
+    max-width: 550px;
+    min-height: 300px;
+    position: relative;
+
+
+    .auth-btn {
+        display: block;
+        width: 50%;
+        border-radius: 0px;
+        text-align: center;
+        padding: 15px;
+        background-color: $primary;
+        color: #fff;
+        box-shadow: none !important;
+
+        &.active {
+            background-color: #fff;
+            color: $black;
+            pointer-events: none;
+        }
+    }
+}
+
+.auth-form {
+    background-color: $white;
+    padding: 25px 15px;
+
+    @include media-breakpoint-up(sm) {
+        padding: 40px 50px 20px;
+    }
+
+    .form-label {
+        color: #333;
+    }
+
+    .btn {
+        padding: 8px 25px;
+    }
+}

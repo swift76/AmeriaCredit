@@ -1,0 +1,82 @@
+// Color system
+// stylelint-disable
+
+$white: #fff;
+$gray-base: #181b1e;
+$gray-100: #f0f3f5; // lighten($gray-base, 85%);
+$gray-200: #ccc; // lighten($gray-base, 80%);
+$gray-300: #c8ced3; // lighten($gray-base, 70%);
+$gray-400: #acb4bc; // lighten($gray-base, 60%);
+$gray-500: #8f9ba6; // lighten($gray-base, 50%);
+$gray-600: #73818f; // lighten($gray-base, 40%);
+$gray-700: #5c6873; // lighten($gray-base, 30%);
+$gray-800: #2f353a; // lighten($gray-base, 10%);
+$gray-900: #23282c; // lighten($gray-base, 5%);
+$gray-901: #eeeeee;
+$black: #000;
+
+$grays: (
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900
+);
+
+$blue: #20a8d8;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #c40000;
+$orange: #f8cb00;
+$yellow: #ffc107;
+$green: #3da08b;
+$teal: #20c997;
+$cyan: #17a2b8;
+$light-blue: #63c2de;
+
+$colors: (
+    'blue': $blue,
+    'indigo': $indigo,
+    'purple': $purple,
+    'pink': $pink,
+    'red': $red,
+    'orange': $orange,
+    'yellow': $yellow,
+    'green': $green,
+    'teal': $teal,
+    'cyan': $cyan,
+    'light-blue': $light-blue,
+    'white': $white,
+    'gray': $gray-600,
+    'gray-dark': $gray-800
+);
+
+$primary: $green;
+$secondary: $gray-300;
+$success: $green;
+$info: $light-blue;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-800;
+$pending: #1d1d1d;
+$rejected: #ff5151;
+$approved: #51a997;
+
+$theme-colors: (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark,
+    'gray': $gray-901,
+    'transparent': transparent
+);

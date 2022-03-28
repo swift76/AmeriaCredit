@@ -1,0 +1,5 @@
+.validationError {
+	color: #c40000;
+	font-size: 12px;
+	display: inline-block;
+}

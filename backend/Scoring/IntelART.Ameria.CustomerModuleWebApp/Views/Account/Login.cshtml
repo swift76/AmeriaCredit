@@ -1,0 +1,30 @@
+﻿@model IntelART.Ameria.CustomerModuleWebApp.Controllers.Authentication.AuthenticationViewModel
+
+<div style="position:absolute; top:0px; bottom:0px; width:100%; background:#F1F1F1; z-index:0;">
+    <div class="container userprofile login-reg">
+@if (ViewContext.ModelState.IsValid == false)
+{
+        <div class="alert alert-danger auth-invalid">
+            @*<strong>Error</strong>*@
+            <div asp-validation-summary="All" class="danger"></div>
+        </div>
+}
+        <ul class="nav nav-tabs">
+            <li @(Model.LoginModel.IsActive ? "class=active":"")><a data-toggle="tab" class="auth-btn" href="#login">Մուտք համակարգ</a></li>
+            <li @(Model.RegisterModel.IsActive || Model.VerificationModel.IsActive ? "class=active":"")><a data-toggle="tab" class="auth-btn" href="#register">Գրանցում</a></li>
+        </ul>
+        <div class="login-body">
+            <div class="tab-content">
+                @Html.Partial("_Login.cshtml", Model.LoginModel)
+                @Html.Partial("_Register.cshtml", Model.RegisterModel)
+                @Html.Partial("_Verify.cshtml", Model.VerificationModel)
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $('a.auth-btn[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $(".auth-invalid").hide();
+        });
+    </script>
+</div>

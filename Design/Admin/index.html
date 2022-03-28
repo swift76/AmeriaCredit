@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ապառիկ հայտերի առցանց համակարգ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="mainbody">
+
+    <div class="header">
+        <a href="index.html" class="logo"></a>
+        <span class="links">
+            <a href="change-password.html">Փոխել գաղտնաբառը</a> / <a href="login.html">Դուրս գալ</a>
+        </span>
+    </div>
+
+
+    <div class="container">
+
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#bankusers">Բանկի օգտագործողներ</a></li>
+                <li><a data-toggle="tab" href="#shopsusers">Խանութների օգտագործողներ</a></li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+
+            <div id="bankusers" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                        <a href="#" class="export">Արտահանել Excel</a>
+                        <a href="#" class="add" data-toggle="modal" data-target="#add-bank-user">Ավելացնել օգտագործող</a>
+                        <h1>Բանկի օգտագործողներ</h1>
+                        <div class="applications">
+
+                            <table id="data-admin" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Օգտագործող</th>
+                                    <th>Անուն</th>
+                                    <th>Կարգավիճակ</th>
+                                    <th>Բացման ամսաթիվ</th>
+                                    <th>Գաղտնաբառի ժամկետ</th>
+                                    <th>Փակման ամսաթիվ</th>
+                                    <th>Գործողություն</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2015</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2016</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2014</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="shopsusers" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                        <a href="#" class="export">Արտահանել Excel</a>
+                        <a href="#" class="add" data-toggle="modal" data-target="#add-shop-user">Ավելացնել օգտագործող</a>
+
+                        <h1>Խանութների օգտագործողներ</h1>
+                        <div class="applications">
+
+                            <table id="data-shop" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Օգտագործող</th>
+                                    <th>Անուն</th>
+                                    <th>Խանութ</th>
+                                    <th>Ղեկավար</th>
+                                    <th>Հեռախոս</th>
+                                    <th>Լիազ. համար</th>
+                                    <th>Լիազ. ամսաթիվ</th>
+                                    <th>Կարգավիճակ</th>
+                                    <th>Բացման ամսաթիվ</th>
+                                    <th>Գաղտն. ժամկետ</th>
+                                    <th>Փակման ամսաթիվ</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Զիգզագ</td>
+                                    <td>Արմեն</td>
+                                    <td>+37444545000</td>
+                                    <td>00254568</td>
+                                    <td>12.12.2010</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Զիգզագ</td>
+                                    <td>Արմեն</td>
+                                    <td>+37444545000</td>
+                                    <td>00254568</td>
+                                    <td>12.12.2010</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Զիգզագ</td>
+                                    <td>Արմեն</td>
+                                    <td>+37444545000</td>
+                                    <td>00254568</td>
+                                    <td>12.12.2010</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Զիգզագ</td>
+                                    <td>Արմեն</td>
+                                    <td>+37444545000</td>
+                                    <td>00254568</td>
+                                    <td>12.12.2010</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ադմին</td>
+                                    <td>Էդգար Դարբինյան</td>
+                                    <td>Զիգզագ</td>
+                                    <td>Արմեն</td>
+                                    <td>+37444545000</td>
+                                    <td>00254568</td>
+                                    <td>12.12.2010</td>
+                                    <td>Ակտիվ</td>
+                                    <td>05.04.2017</td>
+                                    <td>06.06.2018</td>
+                                    <td>06.06.2018</td>
+                                    <td><a class="lock" href="#"></a></td>
+                                </tr>
+                               </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">© 2017 AmeriaBank. All Rights Reserved.</div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="add-bank-user" class="modal fade addnew-dialog" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ավելացնել բանկի օգտագործող</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Օգտագործող</label>
+                    <input type="text" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="email">Անուն</label>
+                    <input type="text" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="email">Գաղտնաբառ</label>
+                    <input type="password" class="form-control" id="email">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Չեղարկել</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ավելացնել</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="add-shop-user" class="modal fade newadminuser" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ավելացնել խանութի օգտագործող</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="text">Օգտագործող</label>
+                            <input type="text" class="form-control" id="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="text">Անուն</label>
+                            <input type="text" class="form-control" id="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="password">Գաղտնաբառ</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Հեռախոս</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Խանութ</label>
+                            <div class="customselect">
+                                <select>
+                                    <option>Խանութ 1</option>
+                                    <option>Խանութ 2</option>
+                                    <option>Խանութ 3</option>
+                                    <option>Խանութ 4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Տեսակը</label>
+                            <div class="customselect">
+                                <select>
+                                    <option>Աշխատակից</option>
+                                    <option>Ղեկավար</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Լիազորագրի համար</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="email">Լիազորագրի ամսաթիվ</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Չեղարկել</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ավելացնել</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>

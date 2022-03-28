@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Ապառիկ հայտերի առցանց համակարգ";
+}
+<script>
+    var isManager = @(User.IsInRole("ShopPowerUser") ? "true" : "false");
+</script>
+
+
+<div class="container">
+
+    <div class="row">
+        &nbsp;
+    </div>
+
+    <div class="tab-content">
+
+        <div id="applications" class="tab-pane fade in active">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 formcontainer">
+                    @*<a href="#" id="exportCSVApplications" class="export">Արտահանել Excel</a>*@
+                    <a href="NewApplication" id="newApplication" class="add">Նոր հայտի գրանցում</a>
+                    <h1>Հայտերի ցուցակ</h1>
+                    <div class="applications">
+					 <div class="daterange datepicker">
+						<input type="text" id="datepicker-from" placeholder="Սկսած">
+						<input type="text" id="datepicker-to" placeholder="Մինչև">
+					</div>
+                        <table id="data-applications" class="display" cellspacing="0" width="100%">
+                           
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div>
+	<!-- Modal -->
+	<div class="modal fade" id="cancelLoanModal" tabindex="-1" role="dialog" aria-labelledby="cancelLoanModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="cancelLoanModalLabel">Վերացնել հայտը</h4>
+				</div>
+				<div class="modal-body">
+					<p>Դուք պատրաստվում եք վերացնել հայտը։ Սեղմեք "<span id="cancel-loan-confirm-text"></span>" կոճակը, եթե համաձայն եք, այլապես սեղմեք "Փակել" կոճակը։</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+					<button type="button" class="btn btn-warning" id="cancel-loan-confirm-btn">Ջնջել</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

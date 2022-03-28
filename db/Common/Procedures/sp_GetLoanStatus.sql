@@ -1,0 +1,9 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetLoanStatus(@ID	uniqueidentifier)
+AS
+	select STATE
+		,LOAN_AGREEMENT_CODE
+		,PLEDGE_AGREEMENT_CODE
+		,ERROR_MESSAGE
+	from Common.LOAN_STATUS
+	where APPLICATION_ID = @ID
+GO

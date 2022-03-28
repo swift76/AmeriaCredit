@@ -1,0 +1,53 @@
+﻿@model IntelART.Ameria.CustomerModuleWebApp.Controllers.Authentication.LoginModel
+
+<div id="login" class="tab-pane fade@(Model.IsActive ? " in active":"")">
+    <div class="login-block">
+    <form asp-action="Login">
+        <input type="hidden" asp-for="ReturnUrl" />
+        <div class="loginreg-content">
+            <div class="form-group">
+                <label for="phone">Բջջային հեռախոսահամար</label>
+                <div class="phonefield">
+                    <span class="country-code">374</span>
+                    <input placeholder="XX XXX XXX" maxlength="8" id="loginPhone" type="text" class="form-control" asp-for="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Գաղտնաբառ</label>
+                <input type="password" class="form-control" id="pwd" asp-for="Password">
+            </div>
+            <a asp-action="RequestPasswordReset" class="forgetpass">Վերականգնել / Փոխել գաղտնաբառը</a>
+            @*<div class="checkbox">
+                <label><input type="checkbox"> Հիշել իմ տվյալները</label>
+            </div>*@
+        </div>
+        <div class="login-footer">
+            <button type="submit" class="btn btn-success">Մուտք</button>
+        </div>
+    </form>
+    </div>
+
+    <div class="resetpass">
+        <div class="loginreg-content">
+            Եթե չեք հիշում Ձեր գաղտնաբառը մուտքագրեք այն Էլ. փոստի հասցեն, որը նշել եք գրանցման ժամանակ, մենք կուղարկենք հղում այն վերականգնելու համար։
+            <input type="email">
+            <a class="closereset">Վերադառնալ</a>
+        </div>
+        <div class="login-footer">
+            <button type="button" class="btn btn-success">Հաստատել</button>
+        </div>
+    </div>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        $(".forgetpass").click(function () {
+            $(".login-block").addClass("hide");
+            $(".resetpass").addClass("show");
+        });
+        $(".closereset").click(function () {
+            $(".login-block").removeClass("hide");
+            $(".resetpass").removeClass("show");
+        });
+    });
+</script>*@

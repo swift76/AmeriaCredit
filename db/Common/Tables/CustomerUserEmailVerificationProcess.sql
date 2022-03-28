@@ -1,0 +1,10 @@
+if exists (select * from sys.objects where name='CUSTOMER_USER_EMAIL_VERIFICATION_PROCESS' and type='U')
+	drop table Common.CUSTOMER_USER_EMAIL_VERIFICATION_PROCESS
+GO
+
+CREATE TABLE Common.CUSTOMER_USER_EMAIL_VERIFICATION_PROCESS(
+	PROCESS_ID			uniqueidentifier	NOT NULL PRIMARY KEY,
+	CUSTOMER_USER_ID	int					NOT NULL,
+	EMAIL				varchar(70)			NOT NULL
+)
+GO

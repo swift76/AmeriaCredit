@@ -1,0 +1,6 @@
+﻿<div>
+    @if (User != null && User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Account" asp-action="Logout" class="login" >Ելք</a>
+    }
+</div>

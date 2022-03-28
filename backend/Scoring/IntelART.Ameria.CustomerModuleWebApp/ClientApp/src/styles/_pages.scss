@@ -1,0 +1,26 @@
+.page-content {
+    position: relative;
+    border-left: 1px solid $content-divider-color;
+    padding-left: 16px;
+    padding-bottom: 25px;
+}
+
+.terms-conditions {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.page-headings {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// specific pages
+.auth-page {
+    min-height: calc(100vh - 68px);
+    background-color: #f1f1f1;
+    padding: 42px 8px 20px;
+    position: relative;
+}

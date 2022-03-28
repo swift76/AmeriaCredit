@@ -1,0 +1,8 @@
+if exists (select * from sys.objects where name='INSTALLATION_LOAN_SETTING' and type='U')
+	drop table IL.INSTALLATION_LOAN_SETTING
+GO
+
+CREATE TABLE IL.INSTALLATION_LOAN_SETTING (
+	EXPIRE_DAY_COUNT	tinyint	NOT NULL
+)
+GO

@@ -1,0 +1,7 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetACRAQueries(@APPLICATION_ID	uniqueidentifier)
+AS
+	select DATE,Common.ahf_Unicode2ANSI(BANK_NAME) as BANK_NAME
+	from Common.ACRA_QUERY_RESULT_QUERIES
+	where APPLICATION_ID=@APPLICATION_ID
+	order by DATE
+GO

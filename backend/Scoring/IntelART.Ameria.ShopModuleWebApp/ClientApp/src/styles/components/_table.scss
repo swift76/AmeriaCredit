@@ -1,0 +1,91 @@
+// $table-color;
+// $table-bg
+
+table.table {
+    tr {
+        cursor: pointer;
+    }
+
+    th {
+        position: relative;
+        user-select: none;
+
+        > .order {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            line-height: 1;
+            margin-top: -7px;
+            font-family: 'am-icons' !important;
+            opacity: 0;
+
+            &:before {
+                content: '\e904';
+            }
+
+            &.desc {
+                opacity: 1;
+
+                &:before {
+                    content: '\e903';
+                }
+            }
+
+            &.asc {
+                opacity: 1;
+
+                &:before {
+                    content: '\e904';
+                }
+            }
+        }
+    }
+}
+
+.table-loading-overlay {
+    margin-left: 16px;
+    margin-bottom: 25px;
+}
+
+.text-rejected {
+    color: $rejected;
+}
+
+.text-pending {
+    color: $pending;
+}
+
+.text-approved {
+    color: $approved;
+}
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+
+    li {
+        border-radius: 2px;
+        padding: 5px 7px;
+        margin: 0 2px;
+
+        &:focus,
+        a:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: #004a63;
+            color: white;
+            cursor: pointer;
+        }
+    }
+
+    .active {
+        background-color: $primary;
+    }
+
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}

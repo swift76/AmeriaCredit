@@ -1,0 +1,15 @@
+if exists (select * from sys.objects where name='APPLICATION_SCAN' and type='U')
+	drop table Common.APPLICATION_SCAN
+GO
+
+CREATE TABLE Common.APPLICATION_SCAN (
+	APPLICATION_ID				uniqueidentifier	NOT NULL,
+	APPLICATION_SCAN_TYPE_CODE	char(1)				NOT NULL,
+	FILE_NAME					nvarchar(250)		NOT NULL,
+	CONTENT						varbinary(max)		NOT NULL,
+	CREATION_DATE				datetime			NOT NULL default getdate()
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iAPPLICATION_SCAN1 ON Common.APPLICATION_SCAN(APPLICATION_ID, APPLICATION_SCAN_TYPE_CODE)
+GO

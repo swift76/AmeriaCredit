@@ -1,0 +1,18 @@
+﻿create or alter procedure Common.sp_StartCustomerUserRegistrationProcess (
+	@PROCESS_ID			uniqueidentifier,
+	@VERIFICATION_CODE	varchar(6),
+	@FIRST_NAME_EN		varchar(50),
+	@LAST_NAME_EN		varchar(50),
+	@SOCIAL_CARD_NUMBER	char(10),
+	@MOBILE_PHONE		char(11),
+	@EMAIL				varchar(50),
+	@HASH				varchar(1000),
+	@ONBOARDING_ID		uniqueidentifier = null,
+	@IS_STUDENT			bit = null
+)
+AS
+	insert into Common.CUSTOMER_USER_REGISTRATION_PROCESS
+		(PROCESS_ID, VERIFICATION_CODE, FIRST_NAME_EN, LAST_NAME_EN, MOBILE_PHONE, EMAIL, SOCIAL_CARD_NUMBER, HASH, ONBOARDING_ID, IS_STUDENT)
+	values
+		(@PROCESS_ID, @VERIFICATION_CODE, @FIRST_NAME_EN, @LAST_NAME_EN, @MOBILE_PHONE, @EMAIL, @SOCIAL_CARD_NUMBER, @HASH, @ONBOARDING_ID, @IS_STUDENT)
+GO

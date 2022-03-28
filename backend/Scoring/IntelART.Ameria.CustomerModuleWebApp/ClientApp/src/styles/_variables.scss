@@ -1,0 +1,26 @@
+// Import Ameria default colors
+@import "variables/colors";
+
+// Customized Bootstrap variables
+@import "variables/bootstrap/variables";
+@import "variables/react-toastify/variables";
+@import "variables/react-datepicker/variables";
+
+// Ameria Variables
+
+$gray-9: #999;
+
+// Logo
+$logo-width: 250px;
+
+// Form
+
+// navbar
+$navbar-height: 68px;
+$page-top-space: 25px;
+$navbar-min-height: $navbar-height;
+$content-min-heith: calc(100vh - #{$navbar-min-height} - #{$page-top-space});
+$navbar-index-bg: #F1F1F1;
+
+// page
+$content-divider-color: #ccc

@@ -1,0 +1,47 @@
+﻿if exists (select * from sys.objects where name='sp_CreateCustomerUser' and type='P')
+	drop procedure Common.sp_CreateCustomerUser
+GO
+
+create procedure Common.sp_CreateCustomerUser (
+	@FIRST_NAME_EN			varchar(50),
+	@LAST_NAME_EN			varchar(50),
+	@SOCIAL_CARD_NUMBER		char(10),
+	@MOBILE_PHONE			char(11),
+	@EMAIL					varchar(50),
+	@HASH					varchar(1000),
+	@ONBOARDING_ID			uniqueidentifier = null,
+	@IS_STUDENT				bit = null,
+	@IS_EMAIL_VERIFIED		bit = null,
+	@OPERATION_DETAILS		nvarchar(max),
+	@APPLICATION_USER_ID	int OUTPUT
+)
+
+AS
+	BEGIN TRANSACTION
+
+	BEGIN TRY
+		insert into Common.APPLICATION_USER
+			(LOGIN, HASH, FIRST_NAME, LAST_NAME, EMAIL, OBJECT_STATE_ID, USER_ROLE_ID)
+		values
+			(@MOBILE_PHONE, @HASH, @FIRST_NAME_EN, @LAST_NAME_EN, @EMAIL, 1 /* Ակտիվ */, 3 /* Հաճախորդ */)
+
+		set @APPLICATION_USER_ID = SCOPE_IDENTITY()
+
+		insert into IL.BANK_APPLICATION_OPERATION_LOG
+			(APPLICATION_USER_ID, BANK_OBJECT_CODE, BANK_OPERATION_CODE, ENTITY_ID,	OPERATION_DETAILS)
+		values
+			(@APPLICATION_USER_ID, 'CUSTOMERUSER', 'CREATE', @APPLICATION_USER_ID, @OPERATION_DETAILS)
+
+		insert into Common.CUSTOMER_USER
+			(APPLICATION_USER_ID, FIRST_NAME_EN, LAST_NAME_EN, MOBILE_PHONE, EMAIL, SOCIAL_CARD_NUMBER, ONBOARDING_ID, IS_STUDENT, IS_EMAIL_VERIFIED)
+		values
+			(@APPLICATION_USER_ID, @FIRST_NAME_EN, @LAST_NAME_EN, @MOBILE_PHONE, @EMAIL, @SOCIAL_CARD_NUMBER, @ONBOARDING_ID, @IS_STUDENT, @IS_EMAIL_VERIFIED)
+
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		declare @ErrorMessage nvarchar(4000) = ERROR_MESSAGE()
+		RAISERROR (@ErrorMessage, 17, 1)
+	END CATCH
+GO

@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Configurations>Debug;Release;LocalDebug;Staging</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LocalDebug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG;</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Staging|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'IdentityServer' " />
+  <ItemGroup>
+    <Content Remove="web.Debug.config" />
+    <Content Remove="web.LocalDebug.config" />
+    <Content Remove="web.Release.config" />
+    <Content Remove="web.Staging.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="IdentityServer4" Version="1.5.2" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntelART.Ameria.Communication\IntelART.Ameria.Communication.csproj" />
+    <ProjectReference Include="..\IntelART.Ameria.SqlMembershipProvider\IntelART.Ameria.SqlMembershipProvider.csproj" />
+    <ProjectReference Include="..\IntelART.Communication\IntelART.Communication.csproj" />
+    <ProjectReference Include="..\IntelART.IdentityManagement\IntelART.IdentityManagement.csproj" />
+    <ProjectReference Include="..\IntelART.Utilities\IntelART.Utilities.csproj" />
+  </ItemGroup>
+
+  <Target Name="CreateLogsFolder" AfterTargets="Publish">
+    <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
+  </Target>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Xdt.Tools" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="web.Debug.config" />
+    <None Include="web.LocalDebug.config" />
+    <None Include="web.Release.config" />
+    <None Include="web.Staging.config" />
+  </ItemGroup>
+
+  <Target Name="ApplyXdtTransform" BeforeTargets="_TransformWebConfig">
+    <PropertyGroup>
+      <_SourceWebConfig>$(MSBuildThisFileDirectory)Web.config</_SourceWebConfig>
+      <_XdtTransform>$(MSBuildThisFileDirectory)Web.$(Configuration).config</_XdtTransform>
+      <_TargetWebConfig>$(PublishDir)Web.config</_TargetWebConfig>
+    </PropertyGroup>
+    <Exec Command="dotnet transform-xdt --xml &quot;$(_SourceWebConfig)&quot; --transform &quot;$(_XdtTransform)&quot; --output &quot;$(_TargetWebConfig)&quot;" Condition="Exists('$(_XdtTransform)')" />
+  </Target>
+
+</Project>

@@ -1,0 +1,99 @@
+// $table-color;
+// $table-bg
+
+table.table {
+    // color: #566787;
+
+    tr th,
+    tr td {
+        vertical-align: middle;
+    }
+
+    td {
+        font-size: 14px;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+    th {
+        position: relative;
+        font-size: 11px;
+        user-select: none;
+
+        > .order {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            line-height: 1;
+            margin-top: -7px;
+            font-family: 'am-icons' !important;
+            opacity: 0;
+
+            &:before {
+                content: '\e904';
+            }
+
+            &.desc {
+                opacity: 1;
+
+                &:before {
+                    content: '\e903';
+                }
+            }
+
+            &.asc {
+                opacity: 1;
+
+                &:before {
+                    content: '\e902';
+                }
+            }
+        }
+    }
+
+    .line2-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.table-wrapper {
+    position: relative;
+
+    .table-loading-overlay {
+        background-color: rgba(#eee, 0.4);
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+.applications-table {
+    min-height: 400px;
+}
+
+.refinancing-table {
+    .form-group {
+        margin-bottom: 0;
+    }
+}
+
+.text-rejected {
+    color: $rejected;
+}
+
+.text-pending {
+    color: $pending;
+}
+
+.text-approved {
+    color: $approved;
+}

@@ -1,0 +1,6 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetRefinancingLoanCodes(@APPLICATION_ID	uniqueidentifier)
+AS
+	select ROW_ID,isnull(LOAN_CODE,'') as LOAN_CODE
+	from GL.REFINANCING_LOAN
+	where APPLICATION_ID=@APPLICATION_ID
+GO

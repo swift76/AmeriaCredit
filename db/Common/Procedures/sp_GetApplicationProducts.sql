@@ -1,0 +1,7 @@
+﻿CREATE OR ALTER PROCEDURE Common.sp_GetApplicationProducts(@APPLICATION_ID	uniqueidentifier)
+AS
+	select Common.ahf_Unicode2ANSI(DESCRIPTION) as DESCRIPTION,QUANTITY,PRICE
+	from IL.APPLICATION_PRODUCT
+	where APPLICATION_ID=@APPLICATION_ID
+	order by ID
+GO

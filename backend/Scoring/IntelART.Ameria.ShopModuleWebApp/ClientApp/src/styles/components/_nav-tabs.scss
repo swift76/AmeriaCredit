@@ -1,0 +1,13 @@
+.nav-tabs {
+    border: none;
+
+    .nav-link {
+        color: $gray-9;
+    }
+
+    .nav-link.active {
+        background-color: white;
+        border: 1px solid white;
+        pointer-events: none;
+    }
+}

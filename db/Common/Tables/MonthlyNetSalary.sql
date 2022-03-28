@@ -1,0 +1,13 @@
+if exists (select * from sys.objects where name='MONTHLY_NET_SALARY' and type='U')
+	drop table Common.MONTHLY_NET_SALARY
+GO
+
+CREATE TABLE Common.MONTHLY_NET_SALARY (
+	CODE 	char(1)			NOT NULL,
+	NAME_AM	nvarchar(50)	NOT NULL,
+	NAME_EN	varchar(50)		NOT NULL
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iMONTHLY_NET_SALARY1 ON Common.MONTHLY_NET_SALARY(CODE)
+GO

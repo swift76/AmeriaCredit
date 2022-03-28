@@ -1,0 +1,28 @@
+﻿@model IntelART.Ameria.CustomerModuleWebApp.Controllers.Authentication.VerificationModel
+
+<div id="register" class="tab-pane fade@(Model.IsActive ? " in active":"")">
+    <div class="registration show">
+        <form asp-action="VerifyPhone">
+            <div class="loginreg-content">
+                Խնդրում ենք մուտքագրել Ձեր բջջային հեռախոսին ուղարկված գաղտնաբառը։
+                <input type="text" class="form-control" asp-for="VerificationCode" placeholder="XXXXXX" maxlength="6" id="registerAuthenticationCode">
+            </div>
+            <input type="hidden" asp-for="RegistrationProcessId" />
+            <div class="login-footer">
+                <button type="button" class="btn btn-default" id="resendCodeButton">Կրկին ուղարկել</button>
+                <button type="submit" class="btn btn-success">Հաստատել</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $("#resendCodeButton").click(function () {
+        var registrationProcessID = $('#RegistrationProcessId')[0].value;
+        PostRequest("ResendVerificationCode?processID=" + registrationProcessID, null,
+            function () {
+                $("#registerAuthenticationCode")[0].value = "";
+            });
+    });
+</script>

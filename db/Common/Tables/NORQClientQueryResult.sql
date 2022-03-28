@@ -1,0 +1,45 @@
+﻿if exists (select * from sys.objects where name='NORQ_CLIENT_QUERY_RESULT' and type='U')
+	drop table Common.NORQ_CLIENT_QUERY_RESULT
+GO
+
+CREATE TABLE Common.NORQ_CLIENT_QUERY_RESULT(
+	SOCIAL_CARD_NUMBER					char(10)			NOT NULL,
+	QUERY_DATE							datetime			NOT NULL default getdate(),
+	USER_ID								char(4)				NOT NULL,
+	FIRST_NAME							nvarchar(20)		NOT NULL,
+	LAST_NAME							nvarchar(20)		NOT NULL,
+	PATRONYMIC_NAME						nvarchar(20)		NULL,
+	BIRTH_DATE							date				NULL,
+	IS_DEAD								bit					NULL,
+	GENDER								bit					NULL,
+	DISTRICT							nvarchar(20)		NULL,
+	COMMUNITY							nvarchar(40)		NULL,
+	STREET								nvarchar(100)		NULL,
+	BUILDING							nvarchar(40)		NULL,
+	APARTMENT							nvarchar(40)		NULL,
+	NON_BIOMETRIC_PASSPORT_NUMBER		char(9)				NULL,
+	NON_BIOMETRIC_PASSPORT_ISSUE_DATE	date				NULL,
+	NON_BIOMETRIC_PASSPORT_EXPIRY_DATE	date				NULL,
+	NON_BIOMETRIC_PASSPORT_ISSUED_BY	char(3)				NULL,
+	BIOMETRIC_PASSPORT_NUMBER			char(9)				NULL,
+	BIOMETRIC_PASSPORT_ISSUE_DATE		date				NULL,
+	BIOMETRIC_PASSPORT_EXPIRY_DATE		date				NULL,
+	BIOMETRIC_PASSPORT_ISSUED_BY		char(3)				NULL,
+	ID_CARD_NUMBER						char(9)				NULL,
+	ID_CARD_ISSUE_DATE					date				NULL,
+	ID_CARD_EXPIRY_DATE					date				NULL,
+	ID_CARD_ISSUED_BY					char(3)				NULL,
+	FEE									money				NULL,
+	ORGANIZATION_NAME					nvarchar(100)		NULL,
+	REGISTRATION_CODE					nvarchar(20)		NULL,
+	TAX_CODE							varchar(20)			NULL,
+	ORGANIZATION_ADDRESS				nvarchar(100)		NULL,
+	POSITION							nvarchar(100)		NULL,
+	AGREEMENT_START_DATE				date				NULL,
+	AGREEMENT_END_DATE					date				NULL,
+	RESPONSE_XML						nvarchar(max)		NOT NULL
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iNORQ_CLIENT_QUERY_RESULT1 ON Common.NORQ_CLIENT_QUERY_RESULT (SOCIAL_CARD_NUMBER,QUERY_DATE)
+GO

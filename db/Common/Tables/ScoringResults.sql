@@ -1,0 +1,16 @@
+﻿if exists (select * from sys.objects where name='SCORING_RESULTS' and type='U')
+	drop table Common.SCORING_RESULTS
+GO
+
+CREATE TABLE Common.SCORING_RESULTS(
+	QUERY_DATE			datetime			NOT NULL default getdate(),
+	APPLICATION_ID		uniqueidentifier	NOT NULL,
+	SCORING_OPTION		tinyint				NOT NULL,
+	SCORING_AMOUNT		money				NOT NULL,
+	SCORING_COEFFICIENT	money				NOT NULL,
+	SCORING_INTEREST	money				NULL
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iSCORING_RESULTS1 ON Common.SCORING_RESULTS (APPLICATION_ID,SCORING_OPTION)
+GO

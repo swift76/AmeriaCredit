@@ -1,0 +1,18 @@
+.search-field {
+    width: 100%;
+    input {
+        padding-right: 30px;
+    }
+}
+
+.search-field:after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 19px;
+    background: transparent url(/assets/icons/icons.svg) no-repeat;
+    background-position: -22px -1px;
+    position: absolute;
+    top: 10px;
+    right: 13px;
+}

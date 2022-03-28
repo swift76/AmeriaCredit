@@ -1,0 +1,14 @@
+if exists (select * from sys.objects where name='PRODUCT_CATEGORY' and type='U')
+	drop table IL.PRODUCT_CATEGORY
+GO
+
+CREATE TABLE IL.PRODUCT_CATEGORY (
+	CODE		char(2)			NOT NULL,
+	NAME_AM		nvarchar(50)	NOT NULL,
+	NAME_EN		varchar(50)		NOT NULL,
+	CATEGORY	varchar(50)		NULL
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX iPRODUCT_CATEGORY1 ON IL.PRODUCT_CATEGORY(CODE)
+GO

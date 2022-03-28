@@ -1,0 +1,1525 @@
+﻿@{
+    ViewData["Title"] = "Online Loan Applications";
+}
+<link asp-href-include="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link asp-href-include="css/custom.css" rel="stylesheet" type="text/css">
+<script asp-src-include="js/jquery.dataTables.min.js"></script>
+<script asp-src-include="js/globals.js"></script>
+<script asp-src-include="js/utils.js"></script>
+
+<script asp-src-include="js/custom.js"></script>
+<script asp-src-include="js/texts.js"></script>
+<script asp-src-include="js/views.js"></script>
+
+<div class="container userprofile">
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-12 usermenu">
+			<ul>
+				<li id="menuitem_applications"  class="current"><a onclick="drawContent('applications')" href="#">Հայտեր</a></li>
+				<li id="menuitem_newApplication"><a onclick="drawContent('newApplication')" href="#">Դիմել նոր վարկի</a></li>
+				<li id="menuitem_personalInfo"><a onclick="drawContent('personalInfo')" href="#">Անձնական տվյալներ</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-9 col-md-9 col-sm-12">
+			<div class="userbody aparikflow">
+				<div id="loan">
+					<ul id="aparikTabs" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#step1"><span class="stepnumber">1</span><span class="stepname">Նոր հայտ</span></a></li>
+						<li><a data-toggle="tab" href="#step2"><span class="stepnumber">2</span></a><span class="stepname">Խանութի տվյալներ</span></li>
+					</ul>
+					<ul id="sparoxakanTabs" class="nav nav-tabs" style="display:none;">
+						<li class="active"><a data-toggle="tab" href="#step1"><span class="stepnumber">1</span><span class="stepname">Նոր հայտ</span></a></li>
+						<li><a data-toggle="tab" href="#step2"><span class="stepnumber">2</span><span class="stepname">Վարկի տվյալներ</span></a></li>
+						<li><a data-toggle="tab" href="#step3"><span class="stepnumber">3</span><span class="stepname">Քարտով նույնականացում</span></a></li>
+						<li><a data-toggle="tab" href="#step4"><span class="stepnumber">4</span><span class="stepname">Պայմանագրի տվյալներ</span></a></li>
+					</ul>
+
+					<div class="tab-content">
+					<input type="hidden" id="currentEditing" />
+                        @* Նոր հայտ *@
+						<div id="step1" class="tab-pane fade in active">
+							<div class="" id="form">
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Նոր հայտ</h2>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="form-group">
+											<label for="text">Վարկի տեսակ <span class="mandatory">*</span></label>
+											<div class="customselect">
+												<select req="true" id="preLoanType"></select>
+											</div>
+										</div>
+									</div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="hint" id="hint-01" style="display: none">
+                                            Սպառողական վարկերը նախատեսված են ֆիզիկական անձանց անձնական կամ ընտանեկան սպառողական ծախսերի ֆինանսավորման համար: Սպառողական վարկերը տրամադրվում են միայն ՀՀ դրամով։ <a href="https://www.ameriabank.am/Content.aspx?id=Express+Loans(retail)&page=99&itm=Retail+1.6.2&lang=33" target="_blank">Իմանալ ավելին</a>
+                                        </div>
+                                        <div class="hint" id="hint-02" style="display: none">
+                                            Ընթացիկ ծախսերի իրականացման նպատակով որպես կանոն քարտերի միջոցով տրամադրվող վարկեր, որոնց վճարումներն իրականացվում են ամսական մարումներով։ <a href="http://ameriabank.am/Content.aspx?id=Credit+line+on+Payment+Cards&page=99&itm=Retail+1.6.1&lang=33" target="_blank">Իմանալ ավելին</a>
+                                        </div>
+                                        <div class="hint" id="hint-03" style="display: none">
+                                            Կանխիկացման, վճարումների իրականացման նպատակով դեբետային քարտերի միջոցով տրամադրվող վարկեր: Քարտին կատարված վճարումներից/մուտքերից գանձվում է հաշվարկված տոկոսները, մյուս մասը վերադառնում է քարտին։ <a href="http://ameriabank.am/Content.aspx?id=Credit+line+on+Payment+Cards&page=99&itm=Retail+1.6.1&lang=33" target="_blank">Իմանալ ավելին</a>
+                                        </div>
+                                        <div class="hint" id="hint-04" style="display: none">
+                                            Որպես կանոն վճարումների իրականացման նպատակով կրեդիտային քարտերի միջոցով տրամադրվող վարկեր: Վարկերը տրամադրվում են արտոնյալ ժամանակահատվածով, որի ընթացքում օգտագործված գումարներն ամբողջությամբ մուտքագրելու դեպքում տոկոս չի հաշվարկվում։ <a href="https://ameriabank.am/Content.aspx?id=Credit+line+on+Payment+Cards&page=99&itm=Retail+1.6.1&lang=33" target="_blank">Իմանալ ավելին</a>
+                                        </div>
+                                    </div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Վարկի տվյալներ</h2>
+									</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="currency">Արժույթ <span class="mandatory">*</span></label>
+                                            <div class="customselect">
+                                                <select req="true" id="preCurrencySelect"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="amount" >Գումար <span class="mandatory">*</span></label>
+											<input id="preAmount" placeholder="0" name="amount" req="true" vtype="num" type="text" class="form-control" maxlength="10" />
+										</div>
+									</div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="checkbox" id="refinancingCheckbox" onclick="preTermsCheckboxClick()" /> Վերաֆինանսավորում
+                                            </label>
+                                        </div>
+                                    </div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Անձնական տվյալներ</h2>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Անուն (հայերեն) <span class="mandatory">*</span></label>
+											<input type="text" req="true" class="form-control" id="preName">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Ազգանուն (հայերեն) <span class="mandatory">*</span></label>
+											<input type="text" req="true" class="form-control" id="preLastName">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Հայրանուն (հայերեն) <span class="mandatory">*</span></label>
+											<input type="text" req="true" class="form-control" id="preFatherName">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group datepicker">
+											<label for="text">Ծննդյան ամսաթիվ <span class="mandatory">*</span></label>
+                                            <input type="text" req="true" vtype="date" class="form-control" id="preBirthDate" placeholder="օր/ամիս/տարի">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Անձը հաստատող փաստաթղթեր</h2>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Հանրային ծառայությունների համարանիշ / սոցիալական քարտ <span class="mandatory">*</span></label>
+											<input type="text" req="true" vtype="num" maxlength="10" disabled class="form-control" id="preSocialCard">
+										</div>
+									</div>
+									<div class="clearfix"></div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Փաստաթղթի տեսակ <span class="mandatory">*</span></label>
+											<div class="customselect">
+												<select req="true" id="preDocumentType">
+
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Փաստաթղթի համար <span class="mandatory">*</span></label>
+											<input type="text" req="true" maxlength="9" class="form-control" id="preDocumentNumber">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group datepicker">
+											<label for="text">Տրված <span class="mandatory">*</span></label>
+											<input type="text" req="true" vtype="date" class="form-control" id="preGiven" placeholder="օր/ամիս/տարի">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group datepicker">
+											<label for="text">Վավերականության ժամկետ <span class="mandatory">*</span></label>
+											<input type="text" req="true" vtype="date" class="form-control" id="preExpireDate" placeholder="օր/ամիս/տարի">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Ում կողմից <span class="mandatory">*</span></label>
+											<input type="text" req="true" vtype="num" maxlength="3" class="form-control" id="preGivenBy">
+										</div>
+									</div>
+								</div>
+								<div class="row" id="specializationField">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Գործունեության ոլորտ</h2>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group">
+											<label for="text">Գործունեության ոլորտ <span class="mandatory">*</span></label>
+											<div class="customselect">
+												<select req="true" id="preIndustriesField">
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="loanSaveSubmitBtnsContainer">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" id="preTermsCheckbox" onclick="preTermsCheckboxClick()">
+                                                    Սույնով տալիս եմ իմ համաձայնությունն առ այն, որ «Ամերիաբանկ» ՓԲԸ-ն առանց ինձ տեղեկացնելու հարցումներ կատարի և ստանա տեղեկություններ.
+                                                    <ul>
+                                                        <li>«ԱՔՌԱ Քրեդիտ Ռեփորթինգ» ՓԲԸ-ից իմ ներկա և անցյալ դրամական պարտավորությունների, ինչպես նաև այլ տվյալների մասին,</li>
+                                                        <li>«Նորք» սոցիալական ծառայությունների տեխնոլոգիական և իրազեկման կենտրոն հիմնադրամից` իմ ներկա և անցյալ աշխատանքային գործունեության, ինչպես նաև այլ տվյալների մասին:</li>
+                                                    </ul>
+                                                    Վերոնշյալ տեղեկատվությունը «Ամերիաբանկ» ՓԲԸ-ի կողմից կարող է օգտագործվել ինձ հետ վարկային պայմանագիր կնքելու վերաբերյալ որոշում կայացնելիս, ինչպես նաև սույն համաձայնությունը կիրառելի է իմ և Բանկի միջև հարաբերությունների ամբողջ ժամանակահատվածի ընթացքում։
+                                                    <br />
+                                                    <br />
+                                                    Չնայած Սքորինգային (առցանց) համակարգով հաստատված հայտի առկայությանը, բացառիկ հանգամանքներում Հաճախորդի վարկունակության վերաբերյալ լրացուցիչ պարզաբանումների անհրաժեշտության դեպքում վարկի տրամադրման վերջնական որոշումն ընդունվում է Բանկի/մասնաճյուղի կողմից:
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<button type="button" onclick="savePreRequest();" class="btn btn-default">Հիշել</button>
+											<button type="button" disabled="true" onclick="submitPreRequest()" id="preSubmitButton" class="btn btn-success">Շարունակել</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        @* Խանութի տվյալներ *@
+						<div id="step2" class="tab-pane fade">
+							<div id="aparikMainTab">
+								<div class="" id="form">
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Խանութի տվյալներ</h2>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ապրանքի ստացման եղանակը</label>
+												<div class="customselect">
+													<select req="true" id="aparikProductReceivingOptions">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Խանութ</label>
+												<div class="customselect">
+													<select req="true" id="aparikShops">
+
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12" id="aparikDeliveryAddressContainer">
+											<div class="form-group">
+												<label for="text">Առաքման հասցեն</label>
+												<input type="text" class="form-control" id="aparikDeliveryAddress" placeholder="Քաղաք, Փողոց, տուն/շենք, բնակարան">
+											</div>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ապրանքի տեսակը</label>
+												<div class="customselect">
+													<select req="true" id="aparikProductType">
+
+													</select>
+												</div>
+											</div>
+										</div>
+										<!--
+										<div class="col-lg-4 col-md-4 col-sm-12 padding-5">
+											<div class="form-group">
+												<label for="text">Անվանում</label>
+												<input type="text" class="form-control" id="aparikProductName" value="">
+											</div>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-12 padding-5">
+											<div class="form-group">
+												<label for="text">Քանակ</label>
+												<input type="text" class="form-control" id="aparikProductCount" value="1">
+											</div>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-12 padding-5-15">
+											<div class="form-group">
+												<button onclick="addProduct();" id="aparikAddProductButton" class="btn btn-success">Ավելացնել</button>
+											</div>
+										</div>
+										-->
+									</div>
+									<!--
+									<div class="row">
+										<div id="aparikAddedProducts" class="col-lg-12 col-md-12 col-sm-12 tags">
+										</div>
+									</div>
+									-->
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Վարկի տվյալներ</h2>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Տոկոսադրույք</label>
+												<div class="customselect">
+													<select  req="true" id="aparikInterest">
+
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ժամկետ</label>
+												<div class="customselect" >
+													<select req="true" id="aparikDuration">
+
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Առաջարկվող գումար</label>
+												<input type="number" class="form-control" id="aparikSuggestedAmount" req="true" vtype="num" value="" minnum="1">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Արժույթ</label>
+												<div class="customselect disabled">
+													<select id="aparikCurrency" disabled>
+														<option>AMD</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<!--
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ամսական վճարման չափ</label>
+												<input type="text" class="form-control" id="aparikMonthlyAmount" value="" disabled>
+											</div>
+										</div>
+										-->
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Նախընտրելի մարման օր <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" vtype="num" id="aparikPayDay" maxlength="2">
+											</div>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բանկի հետ հաղորդակցման եղանակ</label>
+												<div class="customselect">
+													<select req="true" id="aparikCommunicationType">
+
+													</select>
+												</div>
+											</div>
+										</div>
+										 <div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<div class="form-group">
+												<button type="button" onclick="getMonthlyPayment();" class="btn btn-success">Հաշվարկել ամսական վճարի չափը</button>
+											</div>
+										</div>
+										<div id="aparikMonthlyPaymentContainer" style="display:none;" class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<div class="alert alert-success">
+													Ձեր ամսական վճարի մոտավոր չափը կազմում է <span id="aparikMonthlyPayment"></span> դրամ
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Անձնական տվյալներ</h2>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Անուն (անգլերեն) <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikName">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ազգանուն (անգլերեն) <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikLastName">
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ծննդավայր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikBirthCountry">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Քաղաքացիություն <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikCitizenship">
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բջջային հեռախոս 1<span class="mandatory">*</span></label>
+                                                <div class="phonefield">
+                                                    <span class="country-code">374</span>
+                                                    <input placeholder="XX XXX XXX" type="text" disabled="disabled" class="form-control" req="true" maxlength="8" vtype="phone" id="aparikMobilePhone1">
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բջջային հեռախոս 2</label>
+                                                <div class="phonefield">
+                                                    <span class="country-code">374</span>
+                                                    <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="aparikMobilePhone2">
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Քաղաքային հեռախոս </label>
+                                                <div class="phonefield">
+                                                    <span class="country-code">374</span>
+                                                    <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="aparikHomePhone">
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="email">Էլ. հասցե <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" vtype="email" id="aparikEmail">
+											</div>
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Գրանցման հասցե</h2>
+										</div>
+										<div class="clearfix"></div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Երկիր <span class="mandatory">*</span></label>
+												<div class="customselect" >
+													<select req="true" id="aparikRegCountry">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Մարզ <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikRegState">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակավայր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikRegCity">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Փողոց <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikRegStreet">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikRegBuilding">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակարան</label>
+												<input type="text" class="form-control" id="aparikRegApartment">
+											</div>
+										</div>
+									</div>
+
+									<div class="row" id="aparikLiveAddressForm">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Բնակության հասցե</h2>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="checkbox">
+												<label><input type="checkbox" id="aparikLiveAddressCheckbox" onclick="aparikLiveAddressCheckboxClicked();"> Նշել, եթե Ձեր գրանցման և բնակության հասցեները համընկնում են</label>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Երկիր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikLiveCountry">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Մարզ <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikLiveState">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակավայր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="aparikLiveCity">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Փողոց <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikLiveStreet">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="aparikLiveBuilding">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակարան</label>
+												<input type="text" class="form-control" id="aparikLiveApartment">
+											</div>
+										</div>
+									</div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 formblock">
+                                            <h2>Փաստաթղթեր</h2>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 fileuploader">
+                                            <form enctype="multipart/form-data" id="installationLoanPassportScanUploadForm">
+                                                <a href="#" class="addfile fileUpload">Կցել անձը հաստատող փաստաթղթի պատճեն<input id="installationLoanPassportScanUpload" type="file" class="upload" /></a>
+                                                <div>
+                                                    <div id="uploadLinkArea">
+                                                        <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                                        <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                                    </div>
+                                                    <progress style="display: none;"></progress>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 fileuploader">
+                                            <form enctype="multipart/form-data" id="installationLoanSocCardScanUploadForm">
+                                                <a href="#" class="addfile fileUpload">Կցել սոցիալական քարտի պատճեն<input id="installationLoanSocCardScanUpload" type="file" class="upload" /></a>
+                                                <div>
+                                                    <div id="uploadLinkArea">
+                                                        <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                                        <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                                    </div>
+                                                    <progress style="display: none;"></progress>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="checkbox">
+												<label><input type="checkbox" id="aparikHasAccount"> Ունեմ հաշիվ Ամերիբանկում</label>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="checkbox">
+												<label><input onclick="aparikTermsCheckboxClick();" id="aparikTermsCheckbox" type="checkbox"> Հաստատում եմ, որ ծանոթացել եմ <a href="#" target="_blank"><a href="#" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Տեղեկատվական ամփոփագրին և Ընդհանրական թերթիկին</a></label>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<button type="button" onclick="saveAparikMainApllication();" class="btn btn-default">Հիշել</button>
+											<button type="button" onclick="submitAparikMainApplication();" disabled="true" id="aparikSubmitButton" class="btn btn-success">Շարունակել</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="sparoxakanMainTab">
+								<div class="" id="form">
+									<div id="sparoxakanLoanInfo">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <h2>Վարկի տվյալներ</h2>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Տոկոսադրույք</label>
+                                                    <div class="customselect">
+                                                        <select req="true" id="sparoxakanInterest"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Ժամկետ</label>
+                                                    <div class="customselect">
+                                                        <select req="true" id="sparoxakanDuration"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Առաջարկվող գումար</label>
+                                                    <input type="text" class="form-control" req="true" vtype="num" id="sparoxakanSuggestedAmount" value="" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group" id="payDayField">
+                                                    <label for="text">Նախընտրելի մարման օր <span class="mandatory">*</span></label>
+                                                    <input type="text" class="form-control" id="sparoxakanPayDay" maxlength="2">
+                                                </div>
+                                            </div>
+
+                                            <div id="sparoxakanCalculator">
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <button type="button" onclick="getSparoxakanMonthlyPayment();" class="btn btn-success">Հաշվարկել ամսական վճարի չափը</button>
+                                                    </div>
+                                                </div>
+                                                <div id="sparoxakanMonthlyPaymentContainer" class="col-lg-12 col-md-12 col-sm-12" style="display:none;">
+                                                    <div class="form-group">
+                                                        <div class="alert alert-success">
+                                                            Ձեր ամսական վճարի մոտավոր չափը կազմում է <span id="sparoxakanMonthlyPayment">դրամ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="refinancingSection">
+
+                                                <div class="alert alert-warning alert-dismissible show" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                    <h4>Ուշադրություն`</h4>
+                                                    Վարկային գծերի և օվերդրաֆտների վերաֆինանսավորման պարագայում <b>ՊԱՐՏԱԴԻՐ</b> համոզվեք, որ վերաֆինանսավորվող վարկային պայմանագիրը վերջնական փակվել է:<br />
+                                                    Վերաֆինանսավորվող պայմանագիրը 30 օրվա ընթացքում փակ չլինելու դեպքում Ամերիաբանկի կողմից վերաֆինանսավորման նպատակով ձեզ տրամադրված վարկային գծի/օվերդրաֆտի տոկոսադրույքը կվերանայվի <b>+2%</b>-ով:<br />
+                                                </div>
+
+                                                <h2>Վերաֆինանսավորում</h2>
+                                                <table id="refinancingTable" class="display datatable" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="table-header">Բանկ</th>
+                                                            <th class="table-header">Տոկոսադրույք</th>
+                                                            <th class="table-header">Սկզբնական գումար</th>
+                                                            <th class="table-header">Վարկի մնացորդ</th>
+                                                            <th class="table-header" type="date">Տրամադրման ամսաթիվ</th>
+                                                            <th class="table-header" type="date">Մարման ամսաթիվ</th>
+                                                            <th class="table-header">Վարկի կոդ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="table-footer-left" colspan="3">Ընդհանուր :</th>
+                                                            <th class="table-footer" id="table-footer-total-value"></th>
+                                                            <th class="table-footer-right" id="table-footer-validation" colspan="3"></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                        </div>
+									</div>
+									<div id="sparoxakanPersonalInfo">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Անձնական տվյալներ</h2>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Անուն (անգլերեն) <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="sparoxakanName">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ազգանուն (անգլերեն) <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="sparoxakanLastName">
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Ծննդավայր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="sparoxakanBirthCountry">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Քաղաքացիություն <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="sparoxakanCitizenship">
+													</select>
+												</div>
+											</div>
+										</div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12" id="containerMobilePhone">
+                                            <div class="form-group">
+                                                <label for="text">Բջջային հեռախոս<span class="mandatory">*</span></label>
+                                                <div class="phonefield">
+                                                    <span class="country-code">374</span>
+                                                    <input placeholder="XX XXX XXX" type="text" disabled="disabled" class="form-control" req="true" maxlength="8" vtype="phone" id="sparoxakanMobilePhone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="text">Քաղաքային հեռախոս </label>
+                                                <div class="phonefield">
+                                                    <span class="country-code">374</span>
+                                                    <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="sparoxakanHomePhone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12" id="containerEmail">
+                                            <div class="form-group">
+                                                <label for="email">Էլ. հասցե <span class="mandatory">*</span></label>
+                                                <input type="text" class="form-control" req="true" vtype="email" id="sparoxakanEmail">
+                                            </div>
+                                        </div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Գրանցման հասցե</h2>
+										</div>
+										<div class="clearfix"></div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Երկիր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="sparoxakanRegCountry">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Մարզ <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="sparoxakanRegState">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակավայր <span class="mandatory">*</span></label>
+												<div class="customselect">
+													<select req="true" id="sparoxakanRegCity">
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Փողոց <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="sparoxakanRegStreet">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+												<input type="text" class="form-control" req="true" id="sparoxakanRegBuilding">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label for="text">Բնակարան</label>
+												<input type="text" class="form-control" id="sparoxakanRegApartment">
+											</div>
+										</div>
+									</div>
+
+                                        <div class="row" id="sparoxakanLiveAddressForm">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <h2>Բնակության հասցե</h2>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="checkbox">
+                                                    <label><input id="sparoxakanLiveAddressCheckbox" onclick="sparoxakanLiveAddressCheckboxClicked();" type="checkbox"> Նշել, եթե Ձեր գրանցման և բնակության հասցեները համընկնում են</label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div id="mainAppCurrentAddressContent">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Երկիր <span class="mandatory">*</span></label>
+                                                        <div class="customselect">
+                                                            <select req="true" id="sparoxakanLiveCountry"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Մարզ <span class="mandatory">*</span></label>
+                                                        <div class="customselect">
+                                                            <select req="true" id="sparoxakanLiveState"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Բնակավայր <span class="mandatory">*</span></label>
+                                                        <div class="customselect">
+                                                            <select req="true" id="sparoxakanLiveCity"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Փողոց <span class="mandatory">*</span></label>
+                                                        <input type="text" class="form-control" req="true" id="sparoxakanLiveStreet">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Տուն / Շենք <span class="mandatory">*</span></label>
+                                                        <input type="text" class="form-control" req="true" id="sparoxakanLiveBuilding">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Բնակարան</label>
+                                                        <input type="text" class="form-control" id="sparoxakanLiveApartment">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <h2>Ընտանիքի տվյալներ</h2>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Ընտանեկան դրություն <span class="mandatory">*</span></label>
+                                                    <div class="customselect">
+                                                        <select id="sparoxakanFamilyStatus" req="true"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="sparoxakanWorkInfo">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <h2>Աշխատանքային տվյալներ</h2>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Գործատու կազմակերպության անվանումը</label>
+                                                        <input type="text" class="form-control" req="true" id="sparoxakanCompanyName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Գործատու կազմակերպության հեռախոսահամար</label>
+                                                        <div class="phonefield">
+                                                            <span class="country-code">374</span>
+                                                            <input placeholder="XX XXX XXX" type="text" class="form-control" maxlength="8" vtype="phone" id="sparoxakanCompanyPhone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Զբաղեցրած պաշտոն</label>
+                                                        <input type="text" class="form-control" req="true" id="sparoxakanPosition">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Ընդհանուր աշխատանքային փորձ</label>
+                                                        <div class="customselect">
+                                                            <select id="sparoxakanTotalExperience" req="true"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="text">Ամսական զուտ եկամուտ</label>
+                                                        <div class="customselect">
+                                                            <select id="sparoxakanMontlyIncome" req="true"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 formblock">
+                                                    <h2>Փաստաթղթեր</h2>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 fileuploader">
+                                                    <form enctype="multipart/form-data" id="sparoxakanDocumentForm">
+                                                        <a class="addfile fileUpload">Խնդրում ենք կցել անձը հաստատող փաստաթղթի պատճեն<input type="file" id="sparoxakanDocumentAttachment" class="upload" /></a><br />
+                                                        <div>
+                                                            <div id="uploadLinkArea">
+                                                                <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                                                <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                                            </div>
+                                                            <progress style="display: none;"></progress>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 fileuploader">
+                                                    <form enctype="multipart/form-data" id="sparoxakanSocCardForm">
+                                                        <a class="addfile fileUpload">Խնդրում ենք կցել հանրային ծառայության համարանիշի (սոցիալական քարտի) պատճեն<input id="sparoxakanSocialCardAttachment" type="file" class="upload" /></a><br />
+                                                        <div>
+                                                            <div id="uploadLinkArea">
+                                                                <a href="" class="filepath" id="uploadLink" target="_blank">Բեռնել</a>
+                                                                <span class="filepath" id="uploadLinkNull">Չկա ընտրված փաստաթուղթ</span>
+                                                            </div>
+                                                            <progress style="display: none;"></progress>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<button type="button" id="sparoxakanSaveButton" onclick="saveSparoxakanMainApplication();" class="btn btn-default">Հիշել</button>
+											<button type="button" id="sparoxakanSubmitMainButton" onclick="submitSparoxakanMainApplication();" class="btn btn-success">Շարունակել</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        @* Քարտով նույնականացում *@
+						<div id="step3" class="tab-pane fade">
+							<div class="" id="form">
+								<div class="row">
+									<div id="sparoxakancardNumberContainer">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<h2>Քարտով նույնականացում</h2>
+										</div>
+                                        <div id="sparoxakanCardGroup">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Վարկը տրամադրելու համար խնդրում ենք լրացնել Ձեր քարտի տվյալները։ Քարտի տվյալներն անհրաժեշտ են Ձեզ նույնականացնելու և վարկային պայմանագիրը կնքելու համար։</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Մուտքագրեք քարտի համարը</label>
+                                                    <input type="text" class="form-control" id="sparoxakanCardNumber" maxlength="16" vtype="num" req="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 expiration-date">
+                                                <div class="form-group">
+                                                    <label for="text">Վավերականության ժամկետը</label>
+                                                    <div class="clearfix"></div>
+                                                    <div class="customselect">
+                                                        <select id="sparoxakanCardExpireMonth" req="true">
+                                                            <option value="1">01</option>
+                                                            <option value="2">02</option>
+                                                            <option value="3">03</option>
+                                                            <option value="4">04</option>
+                                                            <option value="5">05</option>
+                                                            <option value="6">06</option>
+                                                            <option value="7">07</option>
+                                                            <option value="8">08</option>
+                                                            <option value="9">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="customselect">
+                                                        <select id="sparoxakanCardExpireYear" req="true"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+										<div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<button class="btn btn-success" onclick="checkCard();">Հաստատել</button>
+										</div>
+									</div>
+									<div id="sparoxakanInsertSMSCode" style="display:none;">
+										<div class="col-lg-12 col-md-12 col-sm-12 separate15">
+                                            Խնդրում ենք մուտքագրել Ձեր՝ Բանկում գրանցված բջջային հեռախոսահամարին  ուղարկված գաղտնաբառը։
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12" id="sparoxakanSMSGroup">
+											<div class="form-group">
+												<label for="text">Մուտքագրեք նույնականացման կոդը</label>
+												<input type="text" class="form-control" maxlength="6" vtype="num" req="true" id="sparoxakanSMSCode">
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 actions">
+											<button class="btn btn-default" onclick="sendSMS();">Կրկին ուղարկել</button>
+											<button class="btn btn-success" onclick="submitSMSCode()">Շարունակել</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        @* Պայմանագրի կնքում *@
+						<div id="step4" class="tab-pane fade">
+							<div class="" id="form">
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<h2>Պայմանագրի կնքում</h2>
+									</div>
+
+                                    <div id="main-form-data">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="text" id="sparoxakanContractText">Վարկը տրամադրելու համար անհրաժեշտ է ընտրել քարտը, որին ցանկանում եք ստանալ վարկի գումարը կամ պատվիրել նոր քարտ։</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group" id="sparoxakanContractCardGroup">
+                                                <label for="text">Ընտրել քարտի համարը</label>
+                                                <div class="customselect">
+                                                    <select id="sparoxakanContractCard"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 separate15">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" onclick="sparoxakanContractNewCardCheckboxClick();" id="sparoxakanContractNewCardCheckbox"> Պատվիրել նոր քարտ</label>
+                                            </div>
+                                        </div>
+                                        <div id="sparoxakanContractNewCardForm">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="text">Ընտրել քարտի տեսակը</label>
+                                                    <div class="customselect">
+                                                        <select id="sparoxakanCardType"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-3 col-sm-12 separate15">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="sparoxakanCardRadio" value="true" id="sparoxakanDeliverCard" checked> Առաքումով</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-12 separate15">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="sparoxakanCardRadio" value="false" id="sparoxakanTakeCard"> Մասնաճյուղից</label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <i>
+                                                    Քարտը Բանկի մասնաճյուղում տրամադրելու դեպքում գանձվում է 1,000 ՀՀ դրամ միջնորդավճար:
+                                                </i>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12" id="sparoxakanContractDeliverAddressContainer">
+                                                <div class="form-group">
+                                                    <label for="text">Նշել քարտի առաքման հասցեն</label>
+                                                    <input type="text" class="form-control" id="sparoxakanContractDeliverAddress">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12" style="display:none;" id="sparoxakanContractBankBranchContainer">
+                                                <div class="form-group">
+                                                    <label for="text">Նշել այն մասնաճյուղը, որտեղից ցանկանում եք ստանալ քարտը</label>
+                                                    <div class="customselect">
+                                                        <select id="sparoxakanBankBranches"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 separate15">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="sparoxakanContractTermsCheckbox" onclick="sparoxakanContractTermsCheckboxClick();">Հաստատում եմ, որ ծանոթացել եմ և համաձայն եմ հաստատված վարկի <span id="personalSheet"><a href="#" id="personalSheetLink" onClick="saveConsumerLoanContract(event);" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> էական պայմանների անհատական թերթիկին</a><span id="personalSheetLinkDisabled"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> էական պայմանների անհատական թերթիկին</span> և</span> <a href="#" id="loanContractLink" onClick="saveConsumerLoanContract(event);" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> վարկային պայմանագրով սահմանված բոլոր պայմաններին</a><span id="loanContractLinkDisabled"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> վարկային պայմանագրով սահմանված բոլոր պայմաններին</span>։</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="sparoxakanArbitrageTermsCheckbox">Հաստատում եմ, որ համաձայն եմ <a id="arbitrageAgreementLink" href="#" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> արբիտրաժային համաձայնագրով սահմանված դրույթներին</a><span id="arbitrageAgreementLinkDisabled"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> արբիտրաժային համաձայնագրով սահմանված դրույթներին</span>։</label>
+                                        </div>
+                                        <b>
+                                            <br />Նախքան հաստատելը խնդրում ենք անպայման կարդալ էական պայմանների անհատական թերթիկը:<br />
+                                        </b>
+                                    </div>
+									<div class="col-lg-12 col-md-12 col-sm-12 actions">
+										<button class="btn btn-success" id="sparoxakanContractSubmitButton" disabled onclick="submitSparoxakanContract();">Հաստատել</button>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 separate15">
+                                        <div>
+                                            <a href="https://www.ameriabank.am/Content.aspx?id=Openning+and+service+of+Bank+accounts+(Retail)&page=99&itm=Retail+3.1.1&lang=33" target="_blank">«Ամերիաբանկ» ՓԲԸ-ի ծառայությունների հիմնական պայմաններ և սակագներ։</a>
+                                        </div>
+                                        <div>
+                                            <a href="http://ameriabank.am/page.aspx?id=778&lang=33" target="_blank">«Ամերիաբանկ» ՓԲԸ-ի վճարային քարտերի  սպասարկման պայմաններ և օգտագործման կանոններ։</a>
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+                @* Հայտեր *@
+				<div id="applicationList">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+                            <a href="#" onclick="drawContent('newApplication')" class="addnew">Դիմել նոր վարկի</a>
+							<h2>Հայտեր</h2>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12">
+
+							<div class="hayter">
+								<table id="application" class="display datatable" cellspacing="0" width="100%">
+									<thead>
+									<tr>
+										<th class="table-header">Վարկատեսակ</th>
+										<th class="table-header" type="date">Դիմումի ամսաթիվ</th>
+										<th class="table-header">Հայտի գումար</th>
+										<th class="table-header">Կարգավիճակ</th>
+										<th class="table-header">Գործողություն</th>
+									</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+								</table>
+								<div class="no-hayt">Տվյալ պահին չկան գրանցված հայտեր։ <a onclick="drawContent('newApplication')" href="#">Գրանցել նոր հայտ</a></div>
+							</div>
+
+                            <a href="/pdf/Terms_and_Conditions_of_Personal_Profile_Opening_and_Maintenance.pdf" target="_blank">Անձնական էջի բացման և սպասարկման Պայմաններ և Կանոններ</a>
+
+						</div>
+					</div>
+
+				</div>
+                @* Անձնական տվյալներ *@
+				<div id="personalInfo">
+					 <div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<h2>Անձնական տվյալներ</h2>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Անուն (անգլերեն)</label>
+								<input type="text" class="form-control" req="true" id="persInfoNameEN">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Ազգանուն (անգլերեն)</label>
+								<input type="text" class="form-control" req="true" id="persInfoLastNameEN">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Անուն (հայերեն)</label>
+								<input type="text" class="form-control" req="true" id="persInfoNameAM">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Ազգանուն (հայերեն)</label>
+								<input type="text" class="form-control" req="true" id="persInfoLastNameAM">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Հայրանուն (հայերեն)</label>
+								<input type="text" class="form-control" req="true" id="persInfoFatherNameAM">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Ծննդյան ամսաթիվ</label>
+								<div class="daterange datepicker">
+									<input type="text"  vtype="date" id="persInfoBirthDate" class="form-control" placeholder="օր/ամիս/տարի">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Ծննդավայր</label>
+								<div class="customselect">
+									<select id="persInfoBirthPlace">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Քաղաքացիություն</label>
+								<div class="customselect">
+									<select id="persInfoCitizenship">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Բջջային հեռախոս</label>
+                                <div class="phonefield">
+                                    <span class="country-code">374</span>
+                                    <input placeholder="XX XXX XXX" type="text" disabled="disabled" class="form-control" maxlength="8" vtype="phone" id="persInfoPhone">
+                                </div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="email">Էլ. հասցե</label>
+								<input type="text" req="true" vtype="email" class="form-control" id="persInfoEmail">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<h2>Անձը հաստատող փաստաթղթեր</h2>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Հանրային ծառայությունների համարանիշ / սոցիալական քարտ</label>
+								<input type="text" req="true" vtype="num" maxlength="10" disabled="true" class="form-control" id="persInfoSocCard">
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Փաստաթղթի տեսակ</label>
+								<div class="customselect">
+									<select id="persInfoDocumentType">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Փաստաթղթի համար</label>
+								<input type="text" class="form-control" maxlength="9" id="persInfoDocumentNumber">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Տրված</label>
+								<div class="daterange datepicker">
+									<input type="text" vtype="date" id="persInfoGiven" class="form-control" placeholder="օր/ամիս/տարի">
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Վավերականության ժամկետ</label>
+								<div class="daterange datepicker">
+									<input type="text" vtype="date" id="persInfoExpireDate" class="form-control" placeholder="օր/ամիս/տարի">
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Ում կողմից</label>
+								<input type="text" vtype="num" maxlength="3" class="form-control" id="persInfoGivenBy">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<h2>Գրանցման հասցե</h2>
+						</div>
+						<div class="clearfix"></div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Երկիր</label>
+								<div class="customselect">
+									<select id="persInfoRegisterCountry">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Մարզ</label>
+								<div class="customselect">
+									<select id="persInfoRegisterState">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Բնակավայր</label>
+								<div class="customselect">
+									<select id="persInfoRegisterCity">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Փողոց</label>
+								<input type="text" class="form-control" id="persInfoRegisterStreet">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Տուն / Շենք</label>
+								<input type="text" class="form-control" id="persInfoRegisterBuilding">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Բնակարան</label>
+								<input type="text" class="form-control" id="persInfoRegisterApartment">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<h2>Բնակության հասցե</h2>
+						</div>
+						<div class="clearfix"></div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Երկիր</label>
+								<div class="customselect">
+									<select id="persInfoLiveCountry">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Մարզ</label>
+								<div class="customselect">
+									<select id="persInfoLiveState">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Բնակավայր</label>
+								<div class="customselect">
+									<select id="persInfoLiveCity">
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Փողոց</label>
+								<input type="text" class="form-control" id="persInfoLiveStreet">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Տուն / Շենք</label>
+								<input type="text" class="form-control" id="persInfoLiveBuilding">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="text">Բնակարան</label>
+								<input type="text" class="form-control" id="persInfoLiveApartment">
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 actions">
+							<button type="button" onclick="drawContent('applications')" class="btn btn-default">Չեղարկել</button>
+							<button type="button" onclick="savePersonalInfo();" class="btn btn-success">Հիշել</button>
+						</div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 actions">
+                            <a href="/pdf/Terms_and_Conditions_of_Personal_Profile_Opening_and_Maintenance.pdf" target="_blank">Անձնական էջի բացման և սպասարկման Պայմաններ և Կանոններ</a>
+                        </div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="cancelLoanModal" tabindex="-1" role="dialog" aria-labelledby="cancelLoanModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="cancelLoanModalLabel">Վերացնել հայտը</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Դուք պատրաստվում եք վերացնել հայտը։ Սեղմեք "<span id="cancel-loan-confirm-text"></span>" կոճակը, եթե համաձայն եք, այլապես սեղմեք "Փակել" կոճակը։</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+                    <button type="button" class="btn btn-warning" id="cancel-loan-confirm-btn">Ջնջել</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Request Message-->
+    <div id="request" class="modal timeout fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Կատարվում է հարցում</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="back-to-main-page">Վերադառնալ գլխավոր էջ</button>
+                    <button class="btn btn-success disabled" id="request-continue-with-application">Շարունակել</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Timeout Message-->
+    <div id="timeout" class="modal timeout fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ժամանակի ավարտ</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Ծրագրով աշխատելու ժամանակն ավարտվել է, անհրաժեշտ է նորից մուտք գործել համակարգ:</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="close">Փակել</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="bankcheck" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Մոտեցեք մասնաճյուղ</h4>
+          </div>
+          <div class="modal-body">
+            Վարկը ստանալու համար խնդրում ենք անձը հաստատող փաստաթղթով մոտենալ «Ամերիաբանկ» ՓԲԸ-ի ցանկացած մասնաճյուղ։ «Ամերիաբանկ» ՓԲԸ-ի սպասարկման ցանցը և աշխատանքի ժամանակացույցը ներկայացված են <a href = "http://ameriabank.am/Infrastructure.aspx?&lang=33" target="_blank"><b>հետևյալ հղումով:</b></a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<!-- File Max Size Modal -->
+<div id="attachmentsizecheck" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Կցվող փաստաթղթի չափի գերազանցում</h4>
+            </div>
+            <div class="modal-body">
+                Կցվող փաստաթղթի չափը չպետք է գերազանցի <span id="fileMaxSize"></span> կիլոբայթը։ Խնդրում ենք կցել ավելի փոքր չափի փաստաթուղթ։
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+            </div>
+        </div>
+
+    </div>
+</div>

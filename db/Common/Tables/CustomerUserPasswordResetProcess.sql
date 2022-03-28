@@ -1,0 +1,12 @@
+if exists (select * from sys.objects where name='CUSTOMER_USER_PASSWORD_RESET_PROCESS' and type='U')
+	drop table Common.CUSTOMER_USER_PASSWORD_RESET_PROCESS
+GO
+
+CREATE TABLE Common.CUSTOMER_USER_PASSWORD_RESET_PROCESS(
+	PROCESS_ID	uniqueidentifier	NOT NULL PRIMARY KEY,
+	PHONE		varchar(15)			NOT NULL,
+	HASH		varchar(1000)		NOT NULL,
+	EXPIRES_ON	DATETIME			NOT NULL,
+	TRY_COUNT	int					NOT NULL default 0
+)
+GO

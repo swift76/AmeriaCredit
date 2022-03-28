@@ -1,0 +1,13 @@
+.navigation {
+    top: $navbar-min-height;
+
+    @include media-breakpoint-up(md) {
+        height: $content-min-heith;
+    }
+
+    .nav-link.active {
+        background-color: $primary;
+        color: $white;
+        pointer-events: none;
+    }
+}
