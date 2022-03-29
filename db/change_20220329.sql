@@ -1,4 +1,11 @@
-﻿create or alter procedure Common.sp_SaveCompletedApplication(
+﻿alter table Common.COMPLETED_APPLICATION
+alter column
+ESTATE_ADDRESS						nvarchar(140)		NULL
+GO
+
+
+
+create or alter procedure Common.sp_SaveCompletedApplication(
 	@APPLICATION_ID 			uniqueidentifier,
 	@INTEREST					money = null,
 	@FINAL_AMOUNT				money = null,
