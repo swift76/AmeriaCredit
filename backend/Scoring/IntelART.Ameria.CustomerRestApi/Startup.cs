@@ -33,6 +33,7 @@ namespace IntelART.Ameria.CustomerRestApi
         public void ConfigureServices(IServiceCollection services)
         {
             IConfigurationSection corsConfig = Configuration.GetSection("Cors");
+            EmailValidate emailValidate = new EmailValidate();
 
             if (corsConfig != null)
             {
@@ -46,7 +47,12 @@ namespace IntelART.Ameria.CustomerRestApi
                             .AllowAnyMethod();
                     });
                 });
+
+                if (origins != null && origins.Count() > 0)
+                    emailValidate.Url = origins.ToArray()[0];
             }
+
+            services.AddTransient((sp) => emailValidate);
 
             // Add framework services.
             services.AddMvcCore()

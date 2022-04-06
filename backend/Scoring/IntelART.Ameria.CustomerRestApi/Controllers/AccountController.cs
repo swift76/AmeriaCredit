@@ -18,12 +18,14 @@ namespace IntelART.Ameria.CustomerRestApi.Controllers
         private ISmsSender smsSender;
         private IEmailSender emailSender;
         private CustomerUserRepository repository;
-        
-        public AccountController(IConfigurationRoot Configuration, ISmsSender smsSender, IEmailSender emailSender)
+        private string emailValidateUrl;
+
+        public AccountController(IConfigurationRoot Configuration, ISmsSender smsSender, IEmailSender emailSender, EmailValidate emailValidate)
         {
             this.smsSender = smsSender;
             this.emailSender = emailSender;
             this.repository = new CustomerUserRepository(Configuration.GetSection("ConnectionStrings")["ScoringDB"]);
+            emailValidateUrl = emailValidate.Url;
         }
 
         /// <summary>
@@ -133,7 +135,7 @@ namespace IntelART.Ameria.CustomerRestApi.Controllers
                 {
                     Guid id = Guid.NewGuid();
                     this.repository.StartCustomerUserEmailVerificationProcess(id, userId, customerUser.EMAIL);
-                    string url = string.Format("{0}://{1}{2}/{3}", HttpContext.Request.Scheme, HttpContext.Request.Host, Url.Action("ValidateEmail", "Account"), id.ToString("N"));
+                    string url = string.Format("{0}/api/customer/Account/ValidateEmail/{1}", emailValidateUrl, id.ToString("N"));
                     string bodyMessage = string.Format("Սեղմեք ստորև բերված հղման վրա՝ գրանցումն ավարտելու համար։<br /><a href=\"{0}\">{0}</a>", url);
                     this.emailSender.SendAsync(new EmailAddress(string.Format("{0} {1}", customerUser.FIRST_NAME_EN, customerUser.LAST_NAME_EN), customerUser.EMAIL), "Գրանցում", bodyMessage);
                 }
