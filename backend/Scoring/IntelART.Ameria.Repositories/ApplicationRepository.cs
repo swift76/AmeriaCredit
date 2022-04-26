@@ -318,7 +318,17 @@ namespace IntelART.Ameria.Repositories
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("ID", id);
             AgreedApplication application = await GetSingleAsync<AgreedApplication>(parameters, "GL.sp_GetAgreedApplication");
-            this.ApplyMappingSingle(application);
+            decimal.TryParse(GetSetting("AGREEMENT_LIMIT"), out decimal agreementLimit);
+            if (application.CURRENCY_CODE != "AMD")
+            {
+                decimal cbRate = GetCBRate(application.CURRENCY_CODE, GetSetting("BANK_SERVER_DATABASE"));
+                if (cbRate > 0)
+                {
+                    agreementLimit /= cbRate;
+                }
+            }
+            application.IsAgreementNeeded = (application.FINAL_AMOUNT <= agreementLimit);
+            ApplyMappingSingle(application);
             return application;
         }
 

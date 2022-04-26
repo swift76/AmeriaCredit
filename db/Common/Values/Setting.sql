@@ -61,3 +61,6 @@ GO
 insert into Common.SETTING (CODE, VALUE, DESCRIPTION)
 values ('CALL_BACK_URL', 'https://customer.ameriabank.am/', N'Վերադարձի հղում')
 GO
+insert into Common.SETTING (CODE, VALUE, DESCRIPTION)
+values ('AGREEMENT_LIMIT', '300000', N'Համաձայնագրի սահմանաչափ')
+GO

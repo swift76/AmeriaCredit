@@ -16,5 +16,8 @@
         public bool IS_ARBITRAGE_CHECKED { get; set; }
         public decimal ACTUAL_INTEREST { get; set; }
         public bool SUBMIT { get; set; } // Submit or Save
+        public decimal FINAL_AMOUNT { get; set; }
+        public string CURRENCY_CODE { get; set; }
+        public bool IsAgreementNeeded { get; set; }
     }
 }

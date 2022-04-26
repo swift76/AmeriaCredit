@@ -1,4 +1,10 @@
-﻿if exists (select * from sys.objects where name='sp_GetAgreedApplication' and type='P')
+﻿insert into Common.SETTING (CODE, VALUE, DESCRIPTION)
+values ('AGREEMENT_LIMIT', '300000', N'Համաձայնագրի սահմանաչափ')
+GO
+
+
+
+if exists (select * from sys.objects where name='sp_GetAgreedApplication' and type='P')
 	drop procedure GL.sp_GetAgreedApplication
 GO
 
