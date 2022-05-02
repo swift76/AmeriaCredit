@@ -1,0 +1,27 @@
+ALTER TABLE GL.AGREED_APPLICATION
+ADD
+PLEDGE_AGREEMENT_DATE	datetime			NULL
+GO
+
+
+
+create or alter procedure GL.sp_SavePledgeAgreementDate(
+	@APPLICATION_ID 		uniqueidentifier,
+	@PLEDGE_AGREEMENT_DATE	datetime
+)
+AS
+	update GL.AGREED_APPLICATION
+	set PLEDGE_AGREEMENT_DATE=@PLEDGE_AGREEMENT_DATE
+	where APPLICATION_ID=@APPLICATION_ID
+GO
+
+
+
+create or alter procedure GL.sp_GetPledgeAgreementDate(
+	@APPLICATION_ID uniqueidentifier
+)
+AS
+	select PLEDGE_AGREEMENT_DATE
+	from GL.AGREED_APPLICATION
+	where APPLICATION_ID=@APPLICATION_ID
+GO
