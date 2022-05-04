@@ -318,16 +318,26 @@ namespace IntelART.Ameria.Repositories
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("ID", id);
             AgreedApplication application = await GetSingleAsync<AgreedApplication>(parameters, "GL.sp_GetAgreedApplication");
-            decimal.TryParse(GetSetting("AGREEMENT_LIMIT"), out decimal agreementLimit);
-            if (application.CURRENCY_CODE != "AMD")
+            if (application == null)
             {
-                decimal cbRate = GetCBRate(application.CURRENCY_CODE, GetSetting("BANK_SERVER_DATABASE"));
-                if (cbRate > 0)
-                {
-                    agreementLimit /= cbRate;
-                }
+                application = new AgreedApplication();
             }
-            application.IsAgreementNeeded = (application.FINAL_AMOUNT <= agreementLimit);
+            MainApplication mainApplication = await GetSingleAsync<MainApplication>(parameters, "Common.sp_GetMainApplication");
+            if (mainApplication != null)
+            {
+                application.CURRENCY_CODE = mainApplication.CURRENCY_CODE;
+                application.FINAL_AMOUNT = mainApplication.FINAL_AMOUNT;
+                decimal.TryParse(GetSetting("AGREEMENT_LIMIT"), out decimal agreementLimit);
+                if (application.CURRENCY_CODE != "AMD")
+                {
+                    decimal cbRate = GetCBRate(application.CURRENCY_CODE, GetSetting("BANK_SERVER_DATABASE"));
+                    if (cbRate > 0)
+                    {
+                        agreementLimit /= cbRate;
+                    }
+                }
+                application.IsAgreementNeeded = (application.FINAL_AMOUNT <= agreementLimit);
+            }
             ApplyMappingSingle(application);
             return application;
         }

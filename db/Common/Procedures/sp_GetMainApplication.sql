@@ -1,8 +1,4 @@
-﻿if exists (select * from sys.objects where name='sp_GetMainApplication' and type='P')
-	drop procedure Common.sp_GetMainApplication
-GO
-
-create procedure Common.sp_GetMainApplication(@ID	uniqueidentifier)
+﻿create or alter procedure Common.sp_GetMainApplication(@ID	uniqueidentifier)
 AS
 	select  c.FINAL_AMOUNT,
 			c.INTEREST,
@@ -43,7 +39,8 @@ AS
 			c.LOAN_TEMPLATE_CODE,
 			c.OVERDRAFT_TEMPLATE_CODE,
 			a.STATUS as STATUS_ID,
-			a.LOAN_TYPE_ID
+			a.LOAN_TYPE_ID,
+			a.CURRENCY_CODE
 	from Common.COMPLETED_APPLICATION c
 		join Common.APPLICATION a
 		on c.APPLICATION_ID = a.ID

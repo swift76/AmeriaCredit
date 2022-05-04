@@ -47,6 +47,7 @@ namespace IntelART.Ameria.Entities
         public string OVERDRAFT_TEMPLATE_CODE   { get; set; }
         public bool AGREED_WITH_TERMS           { get; set; }
         public bool SUBMIT                      { get; set; } // Submit or Save
+        public string CURRENCY_CODE { get; set; }
 
         public MainApplication()
         {
