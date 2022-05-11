@@ -322,6 +322,10 @@ namespace IntelART.Ameria.Repositories
             {
                 application = new AgreedApplication();
             }
+            else
+            {
+                ApplyMappingSingle(application);
+            }
             MainApplication mainApplication = await GetSingleAsync<MainApplication>(parameters, "Common.sp_GetMainApplication");
             if (mainApplication != null)
             {
@@ -338,7 +342,6 @@ namespace IntelART.Ameria.Repositories
                 }
                 application.IsAgreementNeeded = (application.FINAL_AMOUNT <= agreementLimit);
             }
-            ApplyMappingSingle(application);
             return application;
         }
 
