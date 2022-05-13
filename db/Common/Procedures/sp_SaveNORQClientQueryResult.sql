@@ -1,8 +1,4 @@
-﻿if exists (select * from sys.objects where name='sp_SaveNORQClientQueryResult' and type='P')
-	drop procedure Common.sp_SaveNORQClientQueryResult
-GO
-
-create procedure Common.sp_SaveNORQClientQueryResult(@SOCIAL_CARD_NUMBER					char(10),
+﻿create or alter procedure Common.sp_SaveNORQClientQueryResult(@SOCIAL_CARD_NUMBER					char(10),
 													 @USER_ID								char(4),
 													 @FIRST_NAME							nvarchar(20),
 													 @LAST_NAME								nvarchar(20),
@@ -32,7 +28,7 @@ create procedure Common.sp_SaveNORQClientQueryResult(@SOCIAL_CARD_NUMBER					cha
 													 @REGISTRATION_CODE						nvarchar(20) = NULL,
 													 @TAX_CODE								varchar(20) = NULL,
 													 @ORGANIZATION_ADDRESS					nvarchar(100) = NULL,
-													 @POSITION								nvarchar(100) = NULL,
+													 @POSITION								nvarchar(400) = NULL,
 													 @AGREEMENT_START_DATE					date = NULL,
 													 @AGREEMENT_END_DATE					date = NULL,
 													 @RESPONSE_XML							nvarchar(max))

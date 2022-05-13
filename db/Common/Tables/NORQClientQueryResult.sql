@@ -34,7 +34,7 @@ CREATE TABLE Common.NORQ_CLIENT_QUERY_RESULT(
 	REGISTRATION_CODE					nvarchar(20)		NULL,
 	TAX_CODE							varchar(20)			NULL,
 	ORGANIZATION_ADDRESS				nvarchar(100)		NULL,
-	POSITION							nvarchar(100)		NULL,
+	POSITION							nvarchar(400)		NULL,
 	AGREEMENT_START_DATE				date				NULL,
 	AGREEMENT_END_DATE					date				NULL,
 	RESPONSE_XML						nvarchar(max)		NOT NULL

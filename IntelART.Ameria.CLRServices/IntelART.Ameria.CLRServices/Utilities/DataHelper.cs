@@ -597,7 +597,7 @@ namespace IntelART.Ameria.CLRServices
                     cmd.Parameters.Add(new SqlParameter("@REGISTRATION_CODE", SqlDbType.NVarChar, 20)).Value = response.Employment[0].RegistryCode;
                     cmd.Parameters.Add(new SqlParameter("@TAX_CODE", SqlDbType.VarChar, 20)).Value = response.Employment[0].TaxCode;
                     cmd.Parameters.Add(new SqlParameter("@ORGANIZATION_ADDRESS", SqlDbType.NVarChar, 100)).Value = response.Employment[0].OrganizationAddress;
-                    cmd.Parameters.Add(new SqlParameter("@POSITION", SqlDbType.NVarChar, 100)).Value = response.Employment[0].Position;
+                    cmd.Parameters.Add(new SqlParameter("@POSITION", SqlDbType.NVarChar, 400)).Value = response.Employment[0].Position;
                     cmd.Parameters.Add(new SqlParameter("@AGREEMENT_START_DATE", SqlDbType.Date)).Value = response.Employment[0].AgreementStartDate;
                     cmd.Parameters.Add(new SqlParameter("@AGREEMENT_END_DATE", SqlDbType.Date)).Value = response.Employment[0].AgreementEndDate;
                 }

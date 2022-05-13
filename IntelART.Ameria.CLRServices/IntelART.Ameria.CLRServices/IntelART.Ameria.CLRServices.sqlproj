@@ -26,11 +26,11 @@
     <PermissionSet>UNSAFE</PermissionSet>
     <FileUpgradeFlags>40</FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation>C:\Banks\Scoring\ameria-credit\backend\IntelART.Ameria.CLRServices\Backup\</UpgradeBackupLocation>
+    <UpgradeBackupLocation>C:\Git\AmeriaCredit\IntelART.Ameria.CLRServices\Backup\IntelART.Ameria.CLRServices\</UpgradeBackupLocation>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <Name>IntelART.Ameria.CLRServices</Name>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{c8c50377-c166-4075-9227-e1ef32db4f74}</ProjectGuid>
+    <ProjectGuid>{9fdd381f-645f-4f94-9623-28653ed8f5d3}</ProjectGuid>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>False</GenerateCreateScript>
@@ -98,10 +98,14 @@
     <Compile Include="Utilities\StringTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Queries\" />
     <Folder Include="Utilities\" />
     <Folder Include="Properties\" />
+    <Folder Include="Web References\" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

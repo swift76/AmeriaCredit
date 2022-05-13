@@ -1,8 +1,4 @@
-﻿if exists (select * from sys.objects where name='sp_SaveNORQQueryResult' and type='P')
-	drop procedure Common.sp_SaveNORQQueryResult
-GO
-
-create procedure Common.sp_SaveNORQQueryResult(
+﻿create or alter procedure Common.sp_SaveNORQQueryResult(
 	@APPLICATION_ID					uniqueidentifier,
 	@FIRST_NAME						nvarchar(20),
 	@LAST_NAME						nvarchar(20),
