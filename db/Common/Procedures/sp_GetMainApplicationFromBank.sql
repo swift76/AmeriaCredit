@@ -71,7 +71,10 @@ AS
 		COMPLETION_DATE,
 
 		isnull(c.PREPAID_AMOUNT,0) as PREPAID_AMOUNT,
-		isnull(c.LTV,0) as LTV
+		isnull(c.LTV,0) as LTV,
+
+		isnull(c.BRANCH_CODE,'') as BRANCH_CODE,
+		isnull(c.USER_ID,'') as USER_ID
 	from Common.COMPLETED_APPLICATION c
 	join Common.APPLICATION a
 		on c.APPLICATION_ID=a.ID

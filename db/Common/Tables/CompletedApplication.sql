@@ -69,7 +69,10 @@ CREATE TABLE Common.COMPLETED_APPLICATION (
 	COMPLETION_DATE				date				NULL,
 
 	PREPAID_AMOUNT				money				NULL,
-	LTV							money				NULL
+	LTV							money				NULL,
+
+	BRANCH_CODE					varchar(3)			NULL,
+	USER_ID						varchar(4)			NULL
 )
 GO
 
