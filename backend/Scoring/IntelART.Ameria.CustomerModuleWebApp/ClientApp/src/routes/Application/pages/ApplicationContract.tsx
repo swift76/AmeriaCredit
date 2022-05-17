@@ -22,7 +22,7 @@ import { Button, Form, Row, Col, Modal, Alert, Spinner } from 'react-bootstrap';
 import LoadingButton from 'components/LoadingButton';
 import { saveApplicationAgree } from 'queryies';
 import { termsAndTariffLink, rulsLink } from 'constants/links';
-import { TextField, SelectField } from 'components/Form';
+import { TextField, SelectField, NumberFormatField } from 'components/Form';
 import { FieldSet } from 'components/fieldset';
 import { buildSelectOption, getDocumentUrl, openFile } from 'helpers/data';
 import ContractModalContent from '../components/ContractModalContent';
@@ -56,8 +56,9 @@ function ApplicationContract({ id, disabled }: Props) {
         resolver: yupResolver(applicationContractScheme),
         context: validatationContext
     });
+    const [IsAgreementConfirmed, setIsAgreemenConfirmed] = useState(false);
 
-    const { handleSubmit, errors, register, control, reset, watch, getValues } = methods;
+    const { handleSubmit, errors, register, control, reset, watch, getValues, setValue } = methods;
 
     // useQueryies
     const isStudent = profileData?.IS_STUDENT;
@@ -80,6 +81,11 @@ function ApplicationContract({ id, disabled }: Props) {
 
     const loanTypeId = applicationData?.LOAN_TYPE_ID;
     const statusID = applicationData?.STATUS_ID;
+    const firstName = applicationData?.FIRST_NAME;
+    const lastName = applicationData?.LAST_NAME;
+    const finalAmount = applicationAgreedData?.FINAL_AMOUNT;
+    const IsAgreementNeeded = applicationAgreedData?.IsAgreementNeeded;
+    const agremmentValues = watch('agreement');
 
     // form watching fields
     const isNewCard = watch('IS_NEW_CARD');
@@ -124,6 +130,14 @@ function ApplicationContract({ id, disabled }: Props) {
               }))
             : [];
     }, [activeCards]);
+
+    const isButtonDisabled = useMemo(() => {
+        return (
+            !agreedWithTerms ||
+            !confirmActualInterest ||
+            (IsAgreementNeeded && !IsAgreementConfirmed)
+        );
+    }, [agreedWithTerms, confirmActualInterest, IsAgreementNeeded, IsAgreementConfirmed]);
 
     const onSubmit = async (values: IApplicationAgreed) => {
         setSubmitting(true);
@@ -232,6 +246,22 @@ function ApplicationContract({ id, disabled }: Props) {
             getPersonalSheet();
         }
     }, [id, statusID]);
+
+    useEffect(() => {
+        if (IsAgreementNeeded) {
+            const { firstNameLastName, getAmount, payAmount } = agremmentValues || {};
+
+            if (
+                `${firstName} ${lastName}` === firstNameLastName &&
+                Number(getAmount) === finalAmount &&
+                Number(payAmount) === finalAmount
+            ) {
+                setIsAgreemenConfirmed(true);
+            } else {
+                setIsAgreemenConfirmed(false);
+            }
+        }
+    }, [firstName, lastName, finalAmount, agremmentValues, IsAgreementNeeded]);
 
     return (
         <FieldSet className="application-form-wrapper" disabled={disabled}>
@@ -465,6 +495,51 @@ function ApplicationContract({ id, disabled }: Props) {
                                 </Row>
                             </Alert>
                         )}
+
+                        {IsAgreementNeeded && (
+                            <Alert variant="info" className="form-alert">
+                                <div>
+                                    «Ես՝
+                                    <Form.Control
+                                        className="inline-input"
+                                        as="input"
+                                        onPaste={(e: any) => e.preventDefault()}
+                                        style={{ width: 150 }}
+                                        ref={register}
+                                        placeholder={`${firstName} ${lastName}`}
+                                        name="agreement.firstNameLastName"
+                                    />
+                                    վերցնելով
+                                    <Controller
+                                        name="agreement.getAmount"
+                                        as={NumberFormatField}
+                                        control={control}
+                                        placeholder={finalAmount}
+                                        setValue={setValue}
+                                        className="inline-input"
+                                        style={{ maxWidth: 80 }}
+                                        onPaste={(e: any) => e.preventDefault()}
+                                    />
+                                    գումարի կրեդիտը պարտավորվում եմ սահմանված ժամկետում մարել
+                                    <Controller
+                                        name="agreement.payAmount"
+                                        as={NumberFormatField}
+                                        placeholder={finalAmount}
+                                        className="inline-input"
+                                        control={control}
+                                        setValue={setValue}
+                                        style={{ maxWidth: 80, marginTop: 10 }}
+                                        onPaste={(e: any) => e.preventDefault()}
+                                    />
+                                    գումար և գիտակցում եմ, որ ստանձնած պարտավորությունը ժամանակին և
+                                    պատշաճ չկատարելու դեպքում վճարելու եմ{' '}
+                                    <b>
+                                        տույժ/տուգանքներ և վատանալու է իմ վարկային պատմությունը,
+                                        հնարավոր է նաև զրկվեմ իմ սեփական գույքից»
+                                    </b>
+                                </div>
+                            </Alert>
+                        )}
                         <p className="mb-0">
                             Նախքան հաստատելը խնդրում ենք անպայման կարդալ էական պայմանների անհատական
                             թերթիկը:
@@ -477,7 +552,7 @@ function ApplicationContract({ id, disabled }: Props) {
                         variant="primary"
                         form="ContractForm"
                         loading={submitting}
-                        disabled={!agreedWithTerms || !confirmActualInterest}
+                        disabled={isButtonDisabled}
                     >
                         Հաստատել
                     </LoadingButton>

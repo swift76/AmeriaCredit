@@ -135,7 +135,9 @@ export type IApplicationAgreed = {
     EXISTING_CARD_CODE?: string;
     CREDIT_CARD_TYPE_CODE?: string;
     IS_CARD_DELIVERY?: string | boolean;
+    IsAgreementNeeded?: boolean;
     CARD_DELIVERY_ADDRESS?: string;
+    FINAL_AMOUNT?: number;
     BANK_BRANCH_CODE?: string;
     AGREED_WITH_TERMS?: boolean;
     LOAN_TYPE_ID?: string | null;
