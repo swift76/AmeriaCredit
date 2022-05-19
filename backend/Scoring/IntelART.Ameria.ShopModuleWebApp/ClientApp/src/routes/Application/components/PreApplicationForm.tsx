@@ -211,8 +211,8 @@ function PreApplicationForm({ disabled, loading }: Props) {
                                 name="MOBILE_PHONE_AUTHORIZATION_CODE"
                                 error={errors.MOBILE_PHONE_AUTHORIZATION_CODE}
                                 label="Նույնականացման կոդ"
-                                type="text"
-                                maxLength={6}
+                                type="number"
+                                maxLength={4}
                             />
                         </Col>
                     </Row>
