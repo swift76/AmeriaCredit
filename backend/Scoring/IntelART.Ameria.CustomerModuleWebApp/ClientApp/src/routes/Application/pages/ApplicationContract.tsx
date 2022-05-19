@@ -498,6 +498,9 @@ function ApplicationContract({ id, disabled }: Props) {
 
                         {IsAgreementNeeded && (
                             <Alert variant="info" className="form-alert">
+                                <p>
+                                    <strong>Անհրաժեշտ է լրացնել ընդգծված դաշտերը</strong>
+                                </p>
                                 <div>
                                     «Ես՝
                                     <Form.Control
