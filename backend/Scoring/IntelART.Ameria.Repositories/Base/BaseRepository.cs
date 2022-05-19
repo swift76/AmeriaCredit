@@ -236,9 +236,14 @@ namespace IntelART.Ameria.Repositories
             }
         }
 
-        public string GetAuthorizationCode()
+        public string GetAuthorizationCode6A()
         {
             return (Guid.NewGuid()).ToString().Replace("-", string.Empty).ToUpper().Substring(0, 6);
+        }
+
+        public string GetAuthorizationCode4N()
+        {
+            return (new Random()).Next(0, 9999).ToString().Trim().PadLeft(4, '0');
         }
     }
 }

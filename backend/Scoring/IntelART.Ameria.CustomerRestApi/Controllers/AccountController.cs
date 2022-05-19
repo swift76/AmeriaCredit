@@ -53,7 +53,7 @@ namespace IntelART.Ameria.CustomerRestApi.Controllers
                 }
                 else
                 {
-                    string smsCode = repository.GetAuthorizationCode();
+                    string smsCode = repository.GetAuthorizationCode6A();
                     registrationProcess.VERIFICATION_CODE = smsCode;
                     this.repository.StartRegistrationProcess(registrationProcess);
                     string phone = string.Format("374{0}", registrationProcess.MOBILE_PHONE.Trim());
@@ -81,7 +81,7 @@ namespace IntelART.Ameria.CustomerRestApi.Controllers
                 throw new ApplicationException("E-5008", "SMS ուղարկելու քանակը սպառվեց");
             }
 
-            string smsCode = repository.GetAuthorizationCode();
+            string smsCode = repository.GetAuthorizationCode6A();
             repository.UpdateRegistrationProcess(registrationProcessId, smsCode);
             string phone = string.Format("374{0}", registrationProcess.MOBILE_PHONE.Trim());
             await smsSender.SendAsync(phone, smsCode);

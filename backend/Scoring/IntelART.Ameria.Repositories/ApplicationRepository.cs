@@ -1020,7 +1020,7 @@ namespace IntelART.Ameria.Repositories
                     throw new ApplicationException("ERR-0008", "SMS ուղարկելու քանակը սպառվեց։ Անհրաժեշտ է գնալ բանկ։");
                 }
             }
-            string smsCode = GetAuthorizationCode();
+            string smsCode = GetAuthorizationCode6A();
             await SaveCreditCardAuthorization(applicationID, Crypto.HashString(smsCode));
             return smsCode;
         }
@@ -1186,7 +1186,7 @@ namespace IntelART.Ameria.Repositories
                     throw new ApplicationException("ERR-0008", "SMS ուղարկելու քանակը սպառվել է");
                 }
             }
-            string smsCode = GetAuthorizationCode();
+            string smsCode = GetAuthorizationCode4N();
             await SaveMobilePhoneAuthorization(applicationID, Crypto.HashString(smsCode));
             return smsCode;
         }

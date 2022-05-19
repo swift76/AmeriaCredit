@@ -35,7 +35,7 @@ namespace IntelART.Ameria.CustomerRestApi.Controllers
             {
                 if (this.repository.CheckCustomerUserExistenceByPhone(username))
                 {
-                    string smsCode = repository.GetAuthorizationCode();
+                    string smsCode = repository.GetAuthorizationCode6A();
                     this.repository.StartCustomerUserPasswordResetProcess(username, processId, Crypto.HashString(smsCode));
                     await smsSender.SendAsync(string.Format("374{0}", username), smsCode);
                 }
